@@ -10,5 +10,5 @@ export default {
 } as ComponentMeta<typeof Button>;
 
 export const Primary: ComponentStory<typeof Button> = () => (
-  <Button variant="primary">Button</Button>
+  <Button variant="primary">Button TEST</Button>
 );
