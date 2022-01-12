@@ -8,7 +8,7 @@
     "clean": "rm -rf dist",
     "build": "rollup -c",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
+    "build-storybook": "build-storybook -o docs-build",
     "lint": "eslint src --color",
     "lint:fix": "yarn lint --fix",
     "check-types": "tsc",
