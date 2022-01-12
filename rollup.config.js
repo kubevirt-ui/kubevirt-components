@@ -23,10 +23,10 @@ export default [
         sourcemap: true,
       },
     ],
-    plugins: [resolve(), commonjs(), typescript({ tsconfig: './tsconfig.json' }), postcss()],
+    plugins: [resolve(), commonjs(), postcss(), typescript({ tsconfig: './tsconfig.json' })],
   },
   {
-    input: 'dist/esm/types/index.d.ts',
+    input: 'dist/esm/types/src/index.d.ts',
     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
     plugins: [dts()],
     external: ['react', 'react-dom', /\.(css|less|scss)$/],
