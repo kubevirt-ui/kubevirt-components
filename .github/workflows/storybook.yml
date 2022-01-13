@@ -27,7 +27,7 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.2.2
         env:
-          BRANCH: "${{ github.event_name == 'pull_request_target' && 'gh-pages-' || 'main' }}${{ github.event_name == 'pull_request_target' && github.event.pull_request.number || '' }}"
+          BRANCH: "${{ github.event_name == 'pull_request_target' && env.head_ref || 'main' }}"
         with:
           token: ${{ secrets.BOT_PAT }}
           branch: ${{ env.BRANCH }} # The branch the action should deploy to.
