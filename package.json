@@ -2,8 +2,14 @@
   "name": "kubevirt-ui-components",
   "version": "0.0.1",
   "description": "React Component Library for Kubevirt UI",
-  "repository": "https://github.com/kubevirt-ui/kubevirt-ui-components.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kubevirt-ui/kubevirt-ui-components.git"
+  },
   "private": false,
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com"
+  },
   "scripts": {
     "clean": "rm -rf dist",
     "build": "rollup -c",
