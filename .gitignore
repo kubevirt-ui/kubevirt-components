@@ -1,9 +1,14 @@
-**/node_modules
-npm-debug.log
-yarn-debug.log
-yarn-error.log
-dist
-**/.env
-/coverage
+# https://next.yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 
-.DS_Store
+# Using Yarn node_modules linker strategy
+**/node_modules
+
+# Generated project artifacts
+**/dist

@@ -1,2 +1,2 @@
-# kubevirt-ui-components
-React Component Library for Kubevirt UI
+# Kubevirt UI shared components
+
