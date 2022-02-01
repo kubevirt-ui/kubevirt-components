@@ -1,0 +1,13 @@
+{
+  "extends": "@monorepo/common/tsconfig-bases/react-esm.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "declarationDir": "types",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "typeRoots": ["node_modules/@types", "@types"],
+    "types": ["node", "jest"]
+  },
+  "include": ["packages/**/*"],
+  "exclude": [".yarn", "**/node_modules", "**/dist", "node_modules"]
+}

@@ -1,5 +1,5 @@
 {
-  "name": "@openshift/dynamic-plugin-sdk-utils",
+  "name": "@kubevirt-ui-components/virtualization",
   "version": "0.0.0-alpha1",
   "description": "Provides Kubernetes and React utilities",
   "license": "Apache-2.0",
@@ -19,20 +19,22 @@
     "prepublish": "yarn test",
     "build": "rm -rf dist && rollup -c",
     "lint": "yarn lint:run --ext .ts,.tsx src rollup.config.js",
-    "test": "echo 'Write some tests!'"
+    "test": "jest"
   },
   "peerDependencies": {
-    "lodash-es": "^4.17.21",
-    "react": "^17.0.2"
+    "react": "^17.0.2",
+    "react-dom": "*"
   },
   "devDependencies": {
+    "@kubevirt-ui/kubevirt-api": "^0.0.25",
     "@monorepo/common": "0.0.0-fixed",
+    "@patternfly/react-core": "^4.192.15",
     "@rollup/plugin-node-resolve": "^13.1.1",
     "@rollup/plugin-typescript": "^8.3.0",
-    "@types/lodash-es": "^4.17.5",
-    "@types/react": "^17.0.37",
-    "lodash-es": "^4.17.21",
-    "react": "^17.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.10.1",
+    "@typescript-eslint/parser": "^5.10.1",
+    "eslint-plugin-promise": "latest",
+    "react-i18next": "^11.15.3",
     "rollup": "^2.61.1",
     "rollup-plugin-analyzer": "^4.0.0",
     "rollup-plugin-dts": "^4.0.1",
