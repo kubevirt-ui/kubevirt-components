@@ -1,8 +1,15 @@
-tnisan
-yaacov
-glekner
-metalice
-pcbailey
-avivtur
-vojtechszocs
-hstastna
+component: Kubevirt UI shared components
+
+approvers:
+  - tnisan
+  - yaacov
+  - vojtechszocs
+reviewers:
+  - tnisan
+  - yaacov
+  - glekner
+  - metalice
+  - pcbailey
+  - avivtur
+  - vojtechszocs
+  - hstastna 
