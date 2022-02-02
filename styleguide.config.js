@@ -2,6 +2,7 @@
 const path = require('path');
 
 module.exports = {
+  styleguideDir: 'doc',
   ignore: [
     '**/__tests__/**',
     '**/*.test.{js,jsx,ts,tsx}',
