@@ -2,12 +2,12 @@
 const path = require('path');
 
 module.exports = {
+  propsParser: require('react-docgen-typescript').withDefaultConfig().parse,
   styleguideDir: 'docs-build',
   ignore: [
     '**/__tests__/**',
     '**/*.test.{js,jsx,ts,tsx}',
     '**/*.spec.{js,jsx,ts,tsx}',
-    '**/*.stories.{js,jsx,ts,tsx}',
     '**/*.d.ts',
     'src/components/index.ts',
   ],
