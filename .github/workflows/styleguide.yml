@@ -29,12 +29,13 @@ jobs:
       - run: yarn install
       - run: yarn styleguide:build
 
-      # - name: Deploy 🚀
-      #   uses: JamesIves/github-pages-deploy-action@v4.2.2
-      #   env:
-      #     BRANCH: "${{ github.event_name == 'pull_request_target' && github.head_ref || 'main' }}"
-      #   with:
-      #     token: ${{ secrets.BOT_PAT }}
-      #     branch: ${{ env.BRANCH }} # The branch the action should deploy to.
-      #     folder: doc # The folder that the styleguide:build script generates files.
-      #     clean: true # Automatically remove deleted files from the deploy branch
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.2.2
+        env:
+          BRANCH: "${{ github.event_name == 'pull_request_target' && github.head_ref || 'main' }}"
+        with:
+          token: ${{ secrets.BOT_PAT }}
+          branch: ${{ env.BRANCH }} # The branch the action should deploy to.
+          folder: doc # The folder that the styleguide:build script generates files.
+          clean: true # Automatically remove deleted files from the deploy branch
+          target-folder: doc # The folder that we serve our React-Styleguide files from
