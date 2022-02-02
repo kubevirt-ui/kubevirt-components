@@ -36,6 +36,6 @@ jobs:
         with:
           token: ${{ secrets.BOT_PAT }}
           branch: ${{ env.BRANCH }} # The branch the action should deploy to.
-          folder: doc # The folder that the styleguide:build script generates files.
+          folder: docs-build # The folder that the styleguide:build script generates files.
           clean: true # Automatically remove deleted files from the deploy branch
-          target-folder: doc # The folder that we serve our React-Styleguide files from
+          target-folder: docs # The folder that we serve our React-Styleguide files from
