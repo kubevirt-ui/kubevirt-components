@@ -18,4 +18,4 @@ const customTheme: Partial<Theme> = {
   },
 };
 
-module.exports = customTheme;
+export default customTheme;

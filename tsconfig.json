@@ -14,7 +14,10 @@
     "outDir": "dist",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "emitDeclarationOnly": true
+    "emitDeclarationOnly": true,
+    "paths": {
+      "rsg-components/*": ["./node_modules/react-styleguidist/lib/client/rsg-components/*"]
+    }
   },
   "exclude": ["/node_modules/"]
 }
