@@ -18,13 +18,14 @@ module.exports = {
   ],
   title: 'Kubevirt UI',
   usageMode: 'expand',
-  webpackConfig: require('./webpack.config.js'),
+  webpackConfig: require('./styleguide/webpack.config.js'),
 
   theme: './styleguide/theme.ts',
   styles: './styleguide/styles.ts',
 
   styleguideComponents: {
     LogoRenderer: path.join(__dirname, 'styleguide/components/Logo'),
+    StyleGuideRenderer: path.join(__dirname, 'styleguide/components/StyleGuideRenderer'),
   },
   template: {
     favicon: './styleguide/favicon-32x32.png',

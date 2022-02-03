@@ -77,6 +77,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@kubevirt-ui/kubevirt-api": "^0.0.30"
+    "@kubevirt-ui/kubevirt-api": "^0.0.30",
+    "classnames": "^2.3.1"
   }
 }

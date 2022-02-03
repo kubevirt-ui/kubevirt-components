@@ -2,8 +2,6 @@
 const path = require('path');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
-const BG_IMAGES_DIRNAME = 'bgimages';
-
 module.exports = () => {
   return {
     devtool: 'eval-source-map',
@@ -53,7 +51,7 @@ module.exports = () => {
       extensions: ['.js', '.ts', '.tsx', '.jsx'],
       plugins: [
         new TsconfigPathsPlugin({
-          configFile: path.resolve(__dirname, './tsconfig.json'),
+          configFile: path.resolve(__dirname, '../tsconfig.json'),
         }),
       ],
       symlinks: false,
