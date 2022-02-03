@@ -1,17 +1,15 @@
 import React, { PropsWithChildren } from 'react';
-import Styled from 'react-styleguidist/lib/client/rsg-components/Styled';
 import { Theme } from 'react-styleguidist/lib/typings/RsgTheme';
+import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
 import logo from './logo.png';
 
-const styles = ({ fontFamily, fontSize }: Theme) => ({
+const styles = ({ fontFamily }: Theme) => ({
   logo: {
     display: 'flex',
     alignItems: 'center',
-    margin: 0,
     fontFamily: fontFamily.base,
-    fontSize: fontSize.h1,
-    fontWeight: 'normal',
+    fontSize: 18,
   },
   image: {
     width: '2.5em',
@@ -19,11 +17,7 @@ const styles = ({ fontFamily, fontSize }: Theme) => ({
   },
 });
 
-interface LogoProps {
-  classes: Record<string, string>;
-}
-
-function LogoRenderer({ classes, children }: PropsWithChildren<LogoProps>) {
+function LogoRenderer({ classes, children }: PropsWithChildren<JssInjectedProps>) {
   return (
     <h1 className={classes.logo}>
       <img src={logo} alt="Kubevirt UI" className={classes.image} />
