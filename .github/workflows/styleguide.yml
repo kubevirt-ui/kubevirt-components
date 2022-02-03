@@ -30,7 +30,7 @@ jobs:
       - run: yarn styleguide:build
 
       - name: Deploy 🚀
-        if: github.event_name != 'pull_request_target'
+        if: github.event_name != 'pull_request'
         uses: JamesIves/github-pages-deploy-action@v4.2.2
         env:
           BRANCH: "${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}"
