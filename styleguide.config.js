@@ -16,7 +16,7 @@ module.exports = {
     path.resolve(__dirname, 'node_modules/@patternfly/patternfly/patternfly.css'),
     path.resolve(__dirname, 'node_modules/@patternfly/react-core/dist/styles/base.css'),
   ],
-  title: 'Kubevirt UI',
+  title: 'KubeVirt UI',
   usageMode: 'expand',
   webpackConfig: require('./styleguide/webpack.config.js'),
 

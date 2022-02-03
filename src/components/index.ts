@@ -1,1 +1,1 @@
-export { Button } from './Button/Button';
+export { VMStatusConditionLabel } from './VMStatusConditionLabel/VMStatusConditionLabel';
