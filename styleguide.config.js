@@ -6,6 +6,7 @@ module.exports = {
   styleguideDir: 'docs-build',
   ignore: [
     '**/__tests__/**',
+    '**/tests/**',
     '**/*.test.{js,jsx,ts,tsx}',
     '**/*.spec.{js,jsx,ts,tsx}',
     '**/*.d.ts',
@@ -15,5 +16,17 @@ module.exports = {
     path.resolve(__dirname, 'node_modules/@patternfly/patternfly/patternfly.css'),
     path.resolve(__dirname, 'node_modules/@patternfly/react-core/dist/styles/base.css'),
   ],
+  title: 'Kubevirt UI',
+  usageMode: 'expand',
   webpackConfig: require('./webpack.config.js'),
+
+  theme: './styleguide/theme.ts',
+  styles: './styleguide/styles.ts',
+
+  styleguideComponents: {
+    LogoRenderer: path.join(__dirname, 'styleguide/components/Logo'),
+  },
+  template: {
+    favicon: './styleguide/favicon-32x32.png',
+  },
 };
