@@ -4,8 +4,6 @@ import { Theme } from 'react-styleguidist/lib/typings/RsgTheme';
 
 import logo from './logo.png';
 
-import './style.css';
-
 const styles = ({ fontFamily, fontSize }: Theme) => ({
   logo: {
     display: 'flex',
