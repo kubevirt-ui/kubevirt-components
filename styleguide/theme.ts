@@ -3,8 +3,8 @@ import { RecursivePartial } from 'react-styleguidist/lib/typings/RecursivePartia
 
 const customTheme: RecursivePartial<Theme> = {
   fontFamily: {
-    base: ['Helvetica', 'sans-serif'],
-    monospace: ['Helvetica', 'sans-serif'],
+    base: ['var(--pf-global--FontFamily--sans-serif)'],
+    monospace: ['var(--pf-global--FontFamily--sans-serif)'],
   },
   fontSize: {
     base: 13,
@@ -21,6 +21,7 @@ const customTheme: RecursivePartial<Theme> = {
     base: '#00797F',
     link: '#3accc5',
     name: '#690',
+    sidebarBackground: '#fff',
   },
 };
 

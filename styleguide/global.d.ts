@@ -7,3 +7,5 @@ declare module '*.svg' {
   const value: any;
   export default value;
 }
+
+declare const KUBEVIRT_CONSTS: { allTypes: string[] };

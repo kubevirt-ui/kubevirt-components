@@ -1,6 +1,6 @@
 import { Theme } from 'react-styleguidist/lib/typings/RsgTheme';
 
-const style = (theme: Theme) => {
+const style = ({ color, space }: Theme) => {
   return {
     Playground: {
       preview: {
@@ -10,9 +10,19 @@ const style = (theme: Theme) => {
         borderRadius: 0,
       },
     },
-    Code: {
-      code: {
-        fontSize: 14,
+    Link: {
+      link: {
+        '&, &:link, &:visited': {
+          fontSize: 'inherit',
+          color: '#4a4a4a',
+          textDecoration: 'none',
+        },
+      },
+    },
+    ComponentsList: {
+      isSelected: {
+        borderLeft: [[2, 'solid', color.link]],
+        paddingLeft: space[0],
       },
     },
   };

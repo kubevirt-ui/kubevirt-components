@@ -6,6 +6,8 @@ import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
 const xsmall = '@media (max-width: 600px)';
 
+const navbarHeight = '55px';
+
 const styles = ({ fontFamily, color, mq, sidebarWidth, space }: Theme) => ({
   root: {
     minHeight: '100vh',
@@ -19,12 +21,12 @@ const styles = ({ fontFamily, color, mq, sidebarWidth, space }: Theme) => ({
   },
   header: {
     color: '#fff',
-    backgroundColor: color.link,
+    background: `linear-gradient(to top, ${color.link} 0%, #00aab2 100%)`,
     position: 'fixed',
     top: 0,
     left: 0,
     right: 0,
-    height: '75px',
+    height: navbarHeight,
   },
   bar: {
     display: 'flex',
@@ -51,6 +53,8 @@ const styles = ({ fontFamily, color, mq, sidebarWidth, space }: Theme) => ({
     '&:hover, &:active': {
       color: '#fff',
       cursor: 'pointer',
+      paddingBottom: space[0],
+      borderBottom: [[3, 'solid', '#fed476']],
     },
   },
   content: {
@@ -61,6 +65,9 @@ const styles = ({ fontFamily, color, mq, sidebarWidth, space }: Theme) => ({
       padding: 15,
     },
     display: 'block',
+  },
+  navbar: {
+    padding: [[15, 30]],
   },
   sections: {
     marginTop: '80px',
@@ -75,11 +82,8 @@ const styles = ({ fontFamily, color, mq, sidebarWidth, space }: Theme) => ({
     fontSize: 12,
   },
   sidebar: {
-    backgroundColor: color.sidebarBackground,
-    border: [[color.border, 'solid']],
-    borderWidth: [[0, 1, 0, 0]],
     position: 'fixed',
-    top: '75px',
+    top: navbarHeight,
     left: 0,
     bottom: 0,
     width: sidebarWidth,
@@ -92,41 +96,58 @@ const styles = ({ fontFamily, color, mq, sidebarWidth, space }: Theme) => ({
       paddingBottom: space[0],
     },
   },
+  anchorAsText: {
+    '&, &:link, &:visited': {
+      color: '#fff',
+      cursor: 'pointer',
+    },
+    '&:hover, &:active': {},
+    '& *': {
+      cursor: 'pointer',
+    },
+  },
 });
+
+function NavBar({
+  classes,
+  title,
+}: Pick<PropsWithChildren<StyleGuideRendererProps>, 'classes' | 'title'>) {
+  return (
+    <div className={classes.navbar}>
+      <div className={classes.bar}>
+        <a href="/#" className={classes.anchorAsText}>
+          <Logo>{title}</Logo>
+        </a>
+        <nav className={classes.nav}>
+          <a
+            className={classes.headerLink}
+            href="https://github.com/kubevirt-ui/kubevirt-ui-components"
+          >
+            GitHub
+          </a>
+        </nav>
+      </div>
+    </div>
+  );
+}
 
 interface StyleGuideRendererProps extends JssInjectedProps {
   title: string;
-  version?: string;
-  homepageUrl: string;
   children: React.ReactNode;
-  toc?: React.ReactNode;
-  hasSidebar?: boolean;
+  toc: React.ReactNode;
+  hasSidebar: boolean;
 }
-
 function StyleGuideRenderer({
   classes,
   title,
   children,
-  version,
   toc,
   hasSidebar,
 }: PropsWithChildren<StyleGuideRendererProps>) {
   return (
     <div className={classes.root}>
       <header className={classes.header}>
-        <div className={classes.content}>
-          <div className={classes.bar}>
-            <Logo>{title}</Logo>
-            <nav className={classes.nav}>
-              <a
-                className={classes.headerLink}
-                href="https://github.com/kubevirt-ui/kubevirt-ui-components"
-              >
-                GitHub
-              </a>
-            </nav>
-          </div>
-        </div>
+        <NavBar classes={classes} title={title} />
       </header>
       <div className={hasSidebar ? classes.hasSidebar : ''}>
         <main className={classnames(classes.content, classes.sections)}>{children}</main>
@@ -139,4 +160,5 @@ function StyleGuideRenderer({
     </div>
   );
 }
+
 export default Styled<StyleGuideRendererProps>(styles)(StyleGuideRenderer);

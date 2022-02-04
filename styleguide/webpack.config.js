@@ -1,6 +1,12 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
+const fs = require('fs');
+const webpack = require('webpack');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+
+const allKubevirtTypes = fs
+  .readdirSync(path.resolve(__dirname, '../node_modules/@kubevirt-ui/kubevirt-api/kubevirt/models'))
+  .map((filename) => filename.replace(/\.[^/.]+$/, ''));
 
 module.exports = () => {
   return {
@@ -34,7 +40,6 @@ module.exports = () => {
             {
               loader: 'url-loader',
               options: {
-                limit: 5000,
                 outputPath: 'images',
                 name: '[name].[ext]',
               },
@@ -57,5 +62,12 @@ module.exports = () => {
       symlinks: false,
       cacheWithContext: false,
     },
+    plugins: [
+      new webpack.DefinePlugin({
+        KUBEVIRT_CONSTS: JSON.stringify({
+          allTypes: allKubevirtTypes,
+        }),
+      }),
+    ],
   };
 };

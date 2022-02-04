@@ -12,6 +12,12 @@ module.exports = {
     '**/*.d.ts',
     'src/components/index.ts',
   ],
+  sections: [
+    {
+      name: 'VMStatus',
+      components: 'src/components/**/*.tsx',
+    },
+  ],
   require: [
     path.resolve(__dirname, 'node_modules/@patternfly/patternfly/patternfly.css'),
     path.resolve(__dirname, 'node_modules/@patternfly/react-core/dist/styles/base.css'),
@@ -26,6 +32,7 @@ module.exports = {
   styleguideComponents: {
     LogoRenderer: path.join(__dirname, 'styleguide/components/Logo'),
     StyleGuideRenderer: path.join(__dirname, 'styleguide/components/StyleGuideRenderer'),
+    TypeRenderer: path.join(__dirname, 'styleguide/components/Type'),
   },
   template: {
     favicon: './styleguide/favicon-32x32.png',
