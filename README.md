@@ -1,6 +1,6 @@
 [![NPM Version](https://img.shields.io/npm/v/gm.svg?style=flat)](https://www.npmjs.org/package/@kubevirt-ui/components)
-[![codecov](https://codecov.io/gh/kubevirt-ui/kubevirt-ui-components/branch/main/graph/badge.svg?token=wkLwgaN6YD)](https://codecov.io/gh/kubevirt-ui/kubevirt-ui-components)
-[![DeepSource](https://deepsource.io/gh/kubevirt-ui/kubevirt-ui-components.svg/?label=active+issues&show_trend=true&token=eMPSTlO760qY3rcrQ7I5rK5D)](https://deepsource.io/gh/kubevirt-ui/kubevirt-ui-components/?ref=repository-badge)
+[![codecov](https://codecov.io/gh/kubevirt-ui/kubevirt-components/branch/main/graph/badge.svg?token=wkLwgaN6YD)](https://codecov.io/gh/kubevirt-ui/kubevirt-components)
+[![DeepSource](https://deepsource.io/gh/kubevirt-ui/kubevirt-components.svg/?label=active+issues&show_trend=true&token=eMPSTlO760qY3rcrQ7I5rK5D)](https://deepsource.io/gh/kubevirt-ui/kubevirt-components/?ref=repository-badge)
 
 # @kubevirt-ui/components
 
