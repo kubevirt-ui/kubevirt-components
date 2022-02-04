@@ -5,13 +5,12 @@ import { Label, Popover, PopoverPosition } from '@patternfly/react-core';
 
 export const VMStatusConditionLabel: React.FC<V1VirtualMachineCondition> = React.memo(
   (condition) => {
-    function preventLabelLink(e: React.MouseEvent) {
-      return e.preventDefault();
-    }
+    const preventLabelLink = React.useCallback((e) => e.preventDefault(), []);
 
-    function getBodyContent() {
-      return <div>{condition?.message}</div>;
-    }
+    const getBodyContent = React.useCallback(
+      () => <div>{condition?.message}</div>,
+      [condition?.message],
+    );
 
     return (
       <Popover
