@@ -10,6 +10,11 @@ const style = ({ color, space }: Theme) => {
         borderRadius: 0,
       },
     },
+    Para: {
+      para: {
+        color: color.light,
+      },
+    },
     Link: {
       link: {
         '&, &:link, &:visited': {
