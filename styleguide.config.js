@@ -12,19 +12,27 @@ module.exports = {
     '**/*.d.ts',
     'src/components/index.ts',
   ],
+  sections: [
+    {
+      name: 'VMStatus',
+      components: 'src/components/**/*.tsx',
+    },
+  ],
   require: [
     path.resolve(__dirname, 'node_modules/@patternfly/patternfly/patternfly.css'),
     path.resolve(__dirname, 'node_modules/@patternfly/react-core/dist/styles/base.css'),
   ],
-  title: 'Kubevirt UI',
+  title: 'KubeVirt UI',
   usageMode: 'expand',
-  webpackConfig: require('./webpack.config.js'),
+  webpackConfig: require('./styleguide/webpack.config.js'),
 
   theme: './styleguide/theme.ts',
   styles: './styleguide/styles.ts',
 
   styleguideComponents: {
     LogoRenderer: path.join(__dirname, 'styleguide/components/Logo'),
+    StyleGuideRenderer: path.join(__dirname, 'styleguide/components/StyleGuideRenderer'),
+    TypeRenderer: path.join(__dirname, 'styleguide/components/Type'),
   },
   template: {
     favicon: './styleguide/favicon-32x32.png',

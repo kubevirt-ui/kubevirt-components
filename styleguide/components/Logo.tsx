@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import { Theme } from 'react-styleguidist/lib/typings/RsgTheme';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-import logo from './logo.png';
+import logo from '../logo.png';
 
 const styles = ({ fontFamily }: Theme) => ({
   logo: {
@@ -12,7 +12,7 @@ const styles = ({ fontFamily }: Theme) => ({
     fontSize: 18,
   },
   image: {
-    width: '2.5em',
+    height: '30px',
     marginRight: '0.5em',
   },
 });

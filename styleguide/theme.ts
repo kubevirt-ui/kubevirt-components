@@ -1,9 +1,10 @@
-import { Theme } from 'react-styleguidist/lib/typings/RsgTheme';
+import { Theme } from 'react-styleguidist/lib/typings';
+import { RecursivePartial } from 'react-styleguidist/lib/typings/RecursivePartial';
 
-const customTheme: Partial<Theme> = {
+const customTheme: RecursivePartial<Theme> = {
   fontFamily: {
-    base: ['Helvetica', 'sans-serif'],
-    monospace: ['Helvetica', 'sans-serif'],
+    base: ['var(--pf-global--FontFamily--sans-serif)'],
+    monospace: ['var(--pf-global--FontFamily--sans-serif)'],
   },
   fontSize: {
     base: 13,
@@ -15,6 +16,12 @@ const customTheme: Partial<Theme> = {
     h4: 18,
     h5: 16,
     h6: 16,
+  },
+  color: {
+    base: '#00797F',
+    link: '#3accc5',
+    name: '#690',
+    sidebarBackground: '#fff',
   },
 };
 
