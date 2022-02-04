@@ -6,7 +6,7 @@
 
 React Component Library for Kubevirt UI
 
-[See the documentaion](https://kubevirt-ui.github.io/kubevirt-ui-components/)
+[See the documentaion](https://kubevirt-ui.github.io/kubevirt-components/)
 
 ## Add to your project
 
