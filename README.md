@@ -17,6 +17,7 @@ yarn add -D @kubevirt-ui/components
 ## Scope
 
 Kubevirt UI compoents is a curated list of stable and documented components used by Kubevirt UI aplications and libraries.
+Kuevirt UI is based on [PatternFly](https://www.patternfly.org/) and [Openshift console](https://github.com/openshift/console), it extend them to create specilized components needed for Kubevirt design.
 
 ## When should I contribute my components to this repository?
 
