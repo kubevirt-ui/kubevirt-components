@@ -22,11 +22,13 @@ const printableVmStatus = {
   Unknown: 'Unknown',
 };
 
-<table>
+<table className='pf-c-table pf-m-grid-md'>
+<thead>
   <tr>
     <th width='250px'>Printable Status</th>
     <th>Icon</th>
   </tr>
+  </thead>
   {Object.values(printableVmStatus).map(status => (
     <tr>
       <td>{status}</td>
