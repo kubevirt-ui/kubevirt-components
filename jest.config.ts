@@ -8,6 +8,7 @@ const config: Config.InitialOptions = {
   moduleNameMapper: {
     '\\.(css|less)$': '<rootDir>/__mocks__/dummy.ts',
   },
+  modulePathIgnorePatterns: ['<rootDir>/dist'],
 };
 
 export default config;
