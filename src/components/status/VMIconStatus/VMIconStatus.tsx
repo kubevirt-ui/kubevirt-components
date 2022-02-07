@@ -67,7 +67,7 @@ export const printableVmStatus = {
   WaitingForVolumeBinding: 'WaitingForVolumeBinding',
 };
 
-export const printableToIcon = {
+const printableToIcon = {
   [printableVmStatus.Stopped]: OffIcon,
   [printableVmStatus.Migrating]: SpinningInProgressIcon,
   [printableVmStatus.Provisioning]: SpinningInProgressIcon,
@@ -112,13 +112,33 @@ export const printableStatusToLabel = {
 export interface VMIconStatusProps {
   /** String representing the
    * [V1VirtualMachineStatus](https://github.com/kubevirt-ui/kubevirt-api/blob/e7083a1ad59ae1fa0df83e940687186049ec3c63/kubevirt/models/V1VirtualMachineStatus.ts#L57)
-   * printableStatus property  */
+   * printableStatus property.
+   * Supported statuses now:
+   * - Stopped
+   * - Migrating
+   * - Provisioning
+   * - Starting
+   * - Running
+   * - Paused
+   * - Stopping
+   * - Terminating
+   * - Unknown
+   * - CrashLoopBackOff
+   * - FailedUnschedulable
+   * - ErrorUnschedulable
+   * - ErrImagePull
+   * - ImagePullBackOff
+   * - ErrorPvcNotFound
+   * - ErrorDataVolumeNotFound
+   * - DataVolumeError
+   * - WaitingForVolumeBinding
+   * */
   vmPrintableStatus: V1VirtualMachineStatus['printableStatus'];
 }
 
-export function VMIconStatus({ vmPrintableStatus = printableVmStatus.Unknown }: VMIconStatusProps) {
-  const Icon = printableToIcon[vmPrintableStatus];
-  const title = printableStatusToLabel[vmPrintableStatus];
+export function VMIconStatus({ vmPrintableStatus }: VMIconStatusProps) {
+  const Icon = printableToIcon[vmPrintableStatus || printableVmStatus.Unknown];
+  const title = printableStatusToLabel[vmPrintableStatus || printableVmStatus.Unknown];
 
   return <Icon title={title} />;
 }
