@@ -14,8 +14,12 @@ module.exports = {
   ],
   sections: [
     {
-      name: 'VMStatus',
-      components: 'src/components/**/*.tsx',
+      name: 'Icons',
+      components: 'src/components/icons/**/*.tsx',
+    },
+    {
+      name: 'Status',
+      components: 'src/components/status/**/*.tsx',
     },
   ],
   require: [

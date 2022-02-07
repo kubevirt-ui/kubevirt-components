@@ -2,6 +2,7 @@
   "name": "@kubevirt-ui/components",
   "version": "0.0.2",
   "description": "React Component Library for Kubevirt UI",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/kubevirt-ui/kubevirt-ui-components.git"
@@ -23,6 +24,8 @@
     "@babel/preset-env": "^7.16.8",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
+    "@openshift-console/dynamic-plugin-sdk": "0.0.3",
+    "@openshift-console/dynamic-plugin-sdk-internal": "^0.0.2-wp5",
     "@patternfly/patternfly": "^4.171.1",
     "@patternfly/react-core": "^4.181.1",
     "@rollup/plugin-commonjs": "^21.0.1",

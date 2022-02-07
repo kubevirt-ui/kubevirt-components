@@ -1,1 +1,1 @@
-export { VMStatusConditionLabel } from './VMStatusConditionLabel/VMStatusConditionLabel';
+export * from './status';
