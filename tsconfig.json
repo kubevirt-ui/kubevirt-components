@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "target": "esnext",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -19,5 +19,5 @@
       "rsg-components/*": ["./node_modules/react-styleguidist/lib/client/rsg-components/*"]
     }
   },
-  "exclude": ["/node_modules/"]
+  "exclude": ["/node_modules/", "bridge"]
 }
