@@ -27,6 +27,7 @@ const styles = ({ fontFamily, color, mq, sidebarWidth, space }: Theme) => ({
     left: 0,
     right: 0,
     height: navbarHeight,
+    zIndex: 500,
   },
   bar: {
     display: 'flex',

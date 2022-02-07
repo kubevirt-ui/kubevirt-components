@@ -5,8 +5,15 @@ import { LabelGroup } from '@patternfly/react-core';
 
 import { VMStatusConditionLabel } from '../VMStatusConditionLabel/VMStatusConditionLabel';
 
-export const VMStatusConditionLabelList: React.FC<{ conditions: V1VirtualMachineCondition[] }> =
-  React.memo(({ conditions }) => {
+/**
+ * VirtualMachineCondition represents the state of VirtualMachine
+ * */
+export interface VMStatusConditionLabelListProps {
+  conditions: V1VirtualMachineCondition[];
+}
+
+export const VMStatusConditionLabelList: React.FC<VMStatusConditionLabelListProps> = React.memo(
+  ({ conditions }) => {
     return (
       <LabelGroup>
         {conditions.map(({ message, reason, status, type }) => (
@@ -20,5 +27,6 @@ export const VMStatusConditionLabelList: React.FC<{ conditions: V1VirtualMachine
         ))}
       </LabelGroup>
     );
-  });
+  },
+);
 VMStatusConditionLabelList.displayName = 'VMStatusConditionLabelList';
