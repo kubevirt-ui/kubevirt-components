@@ -96,7 +96,7 @@ jobs:
         if: |
           contains(github.event.comment.html_url, '/pull/') && 
           contains(github.event.comment.body, '/lgtm') &&
-          contains(steps.approvers.outputs.reviewers, github.event.comment.user.login || 'null')
+          contains(steps.reviewers.outputs.reviewers, github.event.comment.user.login || 'null')
         uses: andymckay/labeler@master
         with:
           repo-token: ${{ secrets.BOT_PAT }}
@@ -116,7 +116,7 @@ jobs:
         if: |
           contains(github.event.comment.html_url, '/pull/') && 
           contains(github.event.comment.body, '/remove lgtm') &&
-          contains(steps.approvers.outputs.reviewers, github.event.comment.user.login || 'null')
+          contains(steps.reviewers.outputs.reviewers, github.event.comment.user.login || 'null')
         uses: andymckay/labeler@master
         with:
           repo-token: ${{ secrets.BOT_PAT }}
