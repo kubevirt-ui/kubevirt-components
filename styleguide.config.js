@@ -16,10 +16,17 @@ module.exports = {
     {
       name: 'Icons',
       components: 'src/components/icons/**/*.tsx',
+      content: 'src/components/icons/README.md',
     },
     {
       name: 'Status',
       components: 'src/components/status/**/*.tsx',
+      content: 'src/components/status/README.md',
+    },
+    {
+      name: 'Shims',
+      components: 'src/components/shims/**/*.tsx',
+      content: 'src/components/shims/README.md',
     },
   ],
   require: [

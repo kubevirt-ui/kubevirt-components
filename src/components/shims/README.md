@@ -1,0 +1,1 @@
+shims are components used to fill a gap between current functionality of the sdk

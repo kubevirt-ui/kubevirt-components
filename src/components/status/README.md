@@ -1,0 +1,1 @@
+Components used to represent the status of a resource.
