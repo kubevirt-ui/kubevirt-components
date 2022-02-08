@@ -17,7 +17,7 @@ test('ConditionLabel', async () => {
 
   expect(firstRender).toMatchSnapshot();
 
-  // click on condition to open popover
+  // click on the condition to open popover
   fireEvent.click(getByText(`${reason}=${status}`));
 
   if (!message) return;
