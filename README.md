@@ -11,7 +11,7 @@ React Component Library for Kubevirt UI
 ## Add to your project
 
 ```bash
-yarn add -D @kubevirt-ui/components
+yarn add @kubevirt-ui/components
 ```
 
 ## Scope
