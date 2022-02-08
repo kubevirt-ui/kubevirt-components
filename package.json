@@ -23,13 +23,15 @@
     "@kubevirt-ui/kubevirt-api": "^0.0.30",
     "@patternfly/patternfly": "^4.171.1",
     "@patternfly/react-core": "^4.192.15",
-    "classnames": "^2.3.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "classnames": "^2.3.1"
   },
   "resolutions": {
     "**/react": "17.0.2",
     "**/react-dom": "17.0.2"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",
