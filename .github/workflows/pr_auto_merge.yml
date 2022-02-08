@@ -7,6 +7,8 @@ on:
   check_suite:
     types:
       - completed
+  Status_Checks:
+     - success
   status: {}
 jobs:
   automerge:
