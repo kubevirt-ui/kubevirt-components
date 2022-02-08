@@ -1,2 +1,2 @@
-export * from './VMStatusConditionLabel';
+export * from './ConditionLabel';
 export * from './VMStatusConditionLabelList';
