@@ -23,6 +23,11 @@ module.exports = {
       components: 'src/components/status/**/*.tsx',
       content: 'src/components/status/README.md',
     },
+    {
+      name: 'Shims',
+      components: 'src/components/shims/**/*.tsx',
+      content: 'src/components/shims/README.md',
+    },
   ],
   require: [
     path.resolve(__dirname, 'node_modules/@patternfly/patternfly/patternfly.css'),
