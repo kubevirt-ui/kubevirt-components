@@ -122,7 +122,7 @@ function NavBar({
         <nav className={classes.nav}>
           <a
             className={classes.headerLink}
-            href="https://github.com/kubevirt-ui/kubevirt-ui-components"
+            href="https://github.com/kubevirt-ui/kubevirt-components"
           >
             GitHub
           </a>
