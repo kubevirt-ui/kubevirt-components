@@ -81,8 +81,7 @@ jobs:
         uses: andymckay/labeler@master
         with:
           repo-token: ${{ secrets.BOT_PAT }}
-          add-labels: 'approved'
-          add-labels: 'lgtm'
+          add-labels: 'approved, lgtm'
 
       - name: Remove Approved label
         if: |
