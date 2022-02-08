@@ -24,7 +24,7 @@ export default [
       },
     ],
     plugins: [resolve(), commonjs(), postcss(), typescript({ tsconfig: './tsconfig.json' })],
-    external: ['react', 'react-dom', /\.(css|less|scss)$/],
+    external: ['react', 'react-dom'],
   },
   {
     input: 'dist/esm/types/src/index.d.ts',
