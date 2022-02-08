@@ -1,15 +1,10 @@
 name: Deploy
 on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - 'docs/**'
-      - '.github/**'
+  release:
+    types: [published]
 jobs:
   deploy:
-    name: deploy
-    if: github.event_name != 'pull_request'
+    name: Publish NPM package
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

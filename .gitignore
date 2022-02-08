@@ -6,4 +6,6 @@ dist
 **/.env
 /coverage
 
+/docs-build
+
 .DS_Store

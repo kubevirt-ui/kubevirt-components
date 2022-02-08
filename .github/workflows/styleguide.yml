@@ -1,27 +1,18 @@
-name: React-Styleguide
+name: Styleguide
 on:
   push:
     branches:
       - main
-  pull_request:
-    types:
-      - opened
-      - synchronize
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Print
-        env:
-          CONTEXT: ${{ toJSON(github) }}
-        run: echo "$CONTEXT"
-
       - name: Checkout
         uses: actions/checkout@v2
         with:
           persist-credentials: false
 
-      - name: Setup Yarn
+      - name: Build Styleguide documentation
         uses: actions/setup-node@v2
         with:
           node-version: '14'
@@ -29,7 +20,7 @@ jobs:
       - run: yarn install
       - run: yarn styleguide:build
 
-      - name: Deploy 🚀
+      - name: Deploy Styleguide documentation into github pages 🚀
         if: github.event_name != 'pull_request'
         uses: JamesIves/github-pages-deploy-action@v4.2.2
         env:
