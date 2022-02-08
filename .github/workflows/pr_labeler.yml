@@ -34,16 +34,6 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.BOT_PAT }}"
 
-      - name: Add WIP label / comment trigger
-        if: |
-          contains(github.event.pull_request.title, 'wip') ||
-          (contains(github.event.comment.html_url, '/pull/') && 
-          contains(github.event.comment.body, '/wip'))
-        uses: andymckay/labeler@master
-        with:
-          repo-token: ${{ secrets.BOT_PAT }}
-          add-labels: 'WIP'
-
       - name: Remove WIP label
         if: |
           contains(github.event.comment.html_url, '/pull/') && 
