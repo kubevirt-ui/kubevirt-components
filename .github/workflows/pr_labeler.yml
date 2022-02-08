@@ -48,7 +48,7 @@ jobs:
       - name: Remove WIP label
         if: |
           contains(github.event.comment.html_url, '/pull/') && 
-          contains(github.event.comment.body, '/wip cancel')
+          contains(github.event.comment.body, '/remove wip')
         uses: andymckay/labeler@master
         with:
           repo-token: ${{ secrets.BOT_PAT }}
@@ -67,7 +67,7 @@ jobs:
       - name: Remove bug label
         if: |
           contains(github.event.comment.html_url, '/pull/') && 
-          contains(github.event.comment.body, '/bug cancel')
+          contains(github.event.comment.body, '/remove bug')
         uses: andymckay/labeler@master
         with:
           repo-token: ${{ secrets.BOT_PAT }}
@@ -86,7 +86,7 @@ jobs:
       - name: Remove Approved label
         if: |
           contains(github.event.comment.html_url, '/pull/') &&
-          (contains(github.event.comment.body, '/approve') || contains(github.event.comment.body, '/approve cancel')) &&
+          (contains(github.event.comment.body, '/approve') || contains(github.event.comment.body, '/remove approve')) &&
           contains(steps.approvers.outputs.approvers, github.event.comment.user.login || 'null')
         uses: andymckay/labeler@master
         with:
@@ -108,7 +108,7 @@ jobs:
       - name: Remove LGTM label
         if: |
           contains(github.event.comment.html_url, '/pull/') && 
-          contains(github.event.comment.body, '/lgtm cancel') &&
+          contains(github.event.comment.body, '/remove lgtm') &&
           contains(steps.approvers.outputs.reviewers, github.event.comment.user.login || 'null') &&
           github.event.issue.user.login != github.event.comment.user.login
         uses: andymckay/labeler@master
@@ -138,7 +138,7 @@ jobs:
       - name: Remove Hold label
         if: |
           contains(github.event.comment.html_url, '/pull/') && 
-          contains(github.event.comment.body, '/hold cancel') &&
+          contains(github.event.comment.body, '/remove hold') &&
           contains(steps.approvers.outputs.approvers, github.event.comment.user.login || 'null')
         uses: andymckay/labeler@master
         with:
