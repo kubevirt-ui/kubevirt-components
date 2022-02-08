@@ -3,7 +3,7 @@ import * as React from 'react';
 import { V1VirtualMachineCondition } from '@kubevirt-ui/kubevirt-api/kubevirt';
 import { LabelGroup } from '@patternfly/react-core';
 
-import { ConditionLabel } from '../VMStatusConditionLabel/VMStatusConditionLabel';
+import { ConditionLabel } from '../ConditionLabel';
 
 /**
  * VirtualMachineCondition renders a list of a k8s resource conditions
