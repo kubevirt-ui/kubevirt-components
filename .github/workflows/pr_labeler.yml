@@ -28,12 +28,6 @@ jobs:
         id: approvers
         run: echo ::set-output name=approvers::$(cat ./OWNERS | yq .approvers -M | grep ' ' | sed 's/[", -]//g')
 
-      - name: Add Size label
-        if: github.event_name == 'pull_request_target'
-        uses: "pascalgn/size-label-action@v0.4.3"
-        env:
-          GITHUB_TOKEN: "${{ secrets.BOT_PAT }}"
-
       - name: Add WIP label / comment trigger
         if: |
           contains(github.event.pull_request.title, 'wip') ||
@@ -102,7 +96,7 @@ jobs:
         with:
           repo-token: ${{ secrets.BOT_PAT }}
           add-labels: 'lgtm'
-      
+
       - name: Add LGTM label - approvers
         if: |
           contains(github.event.comment.html_url, '/pull/') && 
@@ -126,8 +120,8 @@ jobs:
 
       - name: Remove LGTM Label if new push is made
         if: |
-         github.event_name == 'pull_request_target' && github.event.action == 'synchronize' &&
-         contains(github.event.pull_request.labels.*.name, 'lgtm')
+          github.event_name == 'pull_request_target' && github.event.action == 'synchronize' &&
+          contains(github.event.pull_request.labels.*.name, 'lgtm')
         uses: andymckay/labeler@master
         with:
           repo-token: ${{ secrets.BOT_PAT }}
@@ -152,4 +146,3 @@ jobs:
         with:
           repo-token: ${{ secrets.BOT_PAT }}
           remove-labels: 'hold'
-
