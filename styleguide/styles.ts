@@ -10,6 +10,11 @@ const style = ({ color, space }: Theme) => {
         borderRadius: 0,
       },
     },
+    Heading: {
+      heading: {
+        scrollMarginTop: '1.5em',
+      },
+    },
     Para: {
       para: {
         color: color.light,

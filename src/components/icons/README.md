@@ -1,0 +1,2 @@
+Here you can find all the components used to create icons.
+Components in this library uses custom icons and a selection from [Font Awesome Free](https://fontawesome.com/v5.15/icons?d=gallery&m=free) and follow the [PatternFly 4 guidelines](https://www.patternfly.org/v4/guidelines/icons/#all-icons)
