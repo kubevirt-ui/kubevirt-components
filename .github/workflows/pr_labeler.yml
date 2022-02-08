@@ -101,7 +101,6 @@ jobs:
         with:
           repo-token: ${{ secrets.BOT_PAT }}
           add-labels: 'lgtm'
-          remove-labels: 'WIP'
       
       - name: Add LGTM label - approvers
         if: |
@@ -112,7 +111,6 @@ jobs:
         with:
           repo-token: ${{ secrets.BOT_PAT }}
           add-labels: 'lgtm, approved'
-          remove-labels: 'WIP'
 
       - name: Remove LGTM label
         if: |
