@@ -4,16 +4,16 @@ const express = require('express');
 const morgan = require('morgan');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const { Command, Option } = require('commander');
-const program = new Command();
 
 // Parse user variables
+const program = new Command();
 program
   .addOption(new Option('-p, --port <number>', 'proxy server port number').default(9090).env('BRIDGE_PORT'))
   .addOption(new Option('-u, --host <host>', 'proxy server host name').default('0.0.0.0').env('BRIDGE_HOST'))
-  .addOption(new Option('-s, --staticFiles <dir>', 'the root directory from which to serve static assets').default('./docs'))
-  .addOption(new Option('-e, --clusterEndpoint <endpoint>', 'drink size').makeOptionMandatory(true).env('BRIDGE_CLUSTER_ENDPOINT'))
-  .addOption(new Option('-t, --clusterThanos <thanos>', 'drink size').makeOptionMandatory(true).env('BRIDGE_CLUSTER_THANOS'))
-  .addOption(new Option('-a, --authBearerToken <auth>', 'port number').makeOptionMandatory(true).env('BRIDGE_AUTH_BEARER_TOKEN'));
+  .addOption(new Option('-s, --staticFiles <dir>', 'the root directory from which to serve static assets').default('./docs-build'))
+  .addOption(new Option('-e, --clusterEndpoint <endpoint>', 'url for k8s api').makeOptionMandatory(true).env('BRIDGE_CLUSTER_ENDPOINT'))
+  .addOption(new Option('-t, --clusterThanos <thanos>', 'url for thanos/prometheus api').makeOptionMandatory(true).env('BRIDGE_CLUSTER_THANOS'))
+  .addOption(new Option('-a, --authBearerToken <auth>', 'auth token for k8s api').makeOptionMandatory(true).env('BRIDGE_AUTH_BEARER_TOKEN'))
 
 program.parse();
 const options = program.opts();
@@ -43,22 +43,23 @@ app.use('/api/kubernetes', createProxyMiddleware({
     pathRewrite: {
         [`^/api/kubernetes`]: '',
     },
- }));
+}));
 
- app.use('/api/prometheus', createProxyMiddleware({
+app.use('/api/prometheus', createProxyMiddleware({
     target: options.clusterThanos,
     secure: false,
     changeOrigin: true,
     pathRewrite: {
         [`^/api/prometheus`]: '',
     },
- }));
- 
- // Serve static files
- app.use(express.static(options.staticFiles));
+}));
 
- // Start the Proxy
+// Serve static files
+app.use(express.static(options.staticFiles));
+
+// Start the Proxy
 app.listen(options.port, options.host, () => {
+    console.log();
     console.log(`Starting kubevirt ui bridge ${options.host}:${options.port}`);
     console.log(`On localhost                http://localhost:${options.port}`);
 });
