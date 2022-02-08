@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "target": "esnext",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
