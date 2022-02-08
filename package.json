@@ -19,6 +19,16 @@
     "styleguide": "styleguidist server",
     "styleguide:build": "styleguidist build"
   },
+  "dependencies": {
+    "@kubevirt-ui/kubevirt-api": "^0.0.30",
+    "classnames": "^2.3.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "resolutions": {
+    "**/react": "17.0.2",
+    "**/react-dom": "17.0.2"
+  },
   "devDependencies": {
     "@babel/core": "^7.16.7",
     "@babel/preset-env": "^7.16.8",
@@ -55,9 +65,7 @@
     "postcss": "^8.4.5",
     "prettier": "^2.5.1",
     "raw-loader": "^4.0.2",
-    "react": "^17.0.2",
     "react-docgen-typescript": "^2.2.2",
-    "react-dom": "^17.0.2",
     "react-styleguidist": "^11.2.0",
     "rollup": "^2.63.0",
     "rollup-plugin-dts": "^4.1.0",
@@ -79,9 +87,5 @@
   "files": [
     "dist"
   ],
-  "types": "dist/index.d.ts",
-  "dependencies": {
-    "@kubevirt-ui/kubevirt-api": "^0.0.30",
-    "classnames": "^2.3.1"
-  }
+  "types": "dist/index.d.ts"
 }
