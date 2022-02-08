@@ -1,7 +1,7 @@
 Examples
 
 ```js
-<VMStatusConditionLabelList conditions={[
+<ConditionLabelList conditions={[
     {
       message: 'no vmi found',
       reason: 'no_vmi',

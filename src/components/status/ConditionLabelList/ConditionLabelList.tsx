@@ -1,18 +1,17 @@
 import * as React from 'react';
 
-import { V1VirtualMachineCondition } from '@kubevirt-ui/kubevirt-api/kubevirt';
 import { LabelGroup } from '@patternfly/react-core';
 
-import { ConditionLabel } from '../ConditionLabel';
+import { ConditionLabel, k8sStatusConditions } from '../ConditionLabel';
 
 /**
  * VirtualMachineCondition renders a list of a k8s resource conditions
  * */
-export interface VMStatusConditionLabelListProps {
-  conditions: V1VirtualMachineCondition[];
+export interface ConditionLabelListProps {
+  conditions: k8sStatusConditions[];
 }
 
-export const VMStatusConditionLabelList: React.FC<VMStatusConditionLabelListProps> = React.memo(
+export const ConditionLabelList: React.FC<ConditionLabelListProps> = React.memo(
   ({ conditions }) => {
     return (
       <LabelGroup>
@@ -29,4 +28,4 @@ export const VMStatusConditionLabelList: React.FC<VMStatusConditionLabelListProp
     );
   },
 );
-VMStatusConditionLabelList.displayName = 'VMStatusConditionLabelList';
+ConditionLabelList.displayName = 'ConditionLabelList';
