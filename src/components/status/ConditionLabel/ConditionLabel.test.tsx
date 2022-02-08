@@ -9,6 +9,7 @@ afterEach(cleanup);
 
 test('ConditionLabel', async () => {
   const { message, reason, status, type } = conditionsMock[0];
+  expect(true).toBe(false);
   const { asFragment, getByText } = render(
     <ConditionLabel message={message} reason={reason} status={status} type={type} />,
   );
