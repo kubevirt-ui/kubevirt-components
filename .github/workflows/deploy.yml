@@ -1,7 +1,9 @@
 name: Deploy
+
 on:
   release:
     types: [published]
+
 jobs:
   deploy:
     name: Publish NPM package
@@ -18,7 +20,7 @@ jobs:
       - run: yarn install
       - run: yarn test
       - run: yarn build
-        
+
       - name: Publish
         uses: JS-DevTools/npm-publish@v1
         with:
