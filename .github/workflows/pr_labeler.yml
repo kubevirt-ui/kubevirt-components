@@ -22,11 +22,11 @@ jobs:
 
       - name: Get Reviewers
         id: reviewers
-        run: echo ::set-output name=reviewers::$(cat ./OWNERS | yq .reviewers -M | grep , | sed 's/[",]//g')
+        run: echo ::set-output name=reviewers::$(cat ./OWNERS | yq .reviewers -M | grep '"' | sed 's/[",]//g')
 
       - name: Get Approvers
         id: approvers
-        run: echo ::set-output name=approvers::$(cat ./OWNERS | yq .approvers -M | grep , | sed 's/[",]//g')
+        run: echo ::set-output name=approvers::$(cat ./OWNERS | yq .approvers -M | grep '"' | sed 's/[",]//g')
 
       - name: Add Size label
         if: github.event_name == 'pull_request_target'
