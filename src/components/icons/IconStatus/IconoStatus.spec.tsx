@@ -24,4 +24,12 @@ describe('Render IconStatus', () => {
       screen.getByTitle(title);
     });
   });
+
+  it('data-test atrtibute added', () => {
+    const dataTest = 'test-id';
+    const { asFragment } = render(<IconStatus status={statuses.Starting} data-test={dataTest} />);
+    expect(asFragment()).toMatchSnapshot();
+
+    screen.getByTestId(dataTest);
+  });
 });

@@ -14,19 +14,25 @@ import { faSpin } from './utils';
 
 type IconProps = {
   title: string;
+  'data-test'?: string;
 };
 
-const RedExclamationCircleIcon: React.FC<IconProps> = ({ title }): React.ReactElement => (
-  <ExclamationCircleIcon color={dangerColor.value} title={title} />
+const RedExclamationCircleIcon: React.FC<IconProps> = ({
+  title,
+  'data-test': dataTest,
+}): React.ReactElement => (
+  <ExclamationCircleIcon color={dangerColor.value} title={title} data-test={dataTest} />
 );
 
-const SpinningInProgressIcon: React.FC<IconProps> = ({ title }): React.ReactElement => (
-  <InProgressIcon title={title} className={faSpin} />
-);
+const SpinningInProgressIcon: React.FC<IconProps> = ({
+  title,
+  'data-test': dataTest,
+}): React.ReactElement => <InProgressIcon title={title} className={faSpin} data-test={dataTest} />;
 
-const SpinningSyncAltIcon: React.FC<IconProps> = ({ title }): React.ReactElement => (
-  <SyncAltIcon title={title} className={faSpin} />
-);
+const SpinningSyncAltIcon: React.FC<IconProps> = ({
+  title,
+  'data-test': dataTest,
+}): React.ReactElement => <SyncAltIcon title={title} className={faSpin} data-test={dataTest} />;
 
 export enum statuses {
   Stopped = 'Stopped',
@@ -139,13 +145,17 @@ export type IconStatusProps = {
    * - WaitingForVolumeBinding
    * */
   status: string;
+  /* For tests purpose */
+  'data-test'?: string;
 };
 
-export const IconStatus: React.FC<IconStatusProps> = React.memo(({ status }) => {
-  const Icon = statusToIcon[status as statuses];
-  const title = statusToLabel[status];
+export const IconStatus: React.FC<IconStatusProps> = React.memo(
+  ({ status, 'data-test': dataTest }) => {
+    const Icon = statusToIcon[status as statuses];
+    const title = statusToLabel[status];
 
-  return <Icon title={title} />;
-});
+    return <Icon title={title} data-test={dataTest} />;
+  },
+);
 
 IconStatus.displayName = 'IconStatus';

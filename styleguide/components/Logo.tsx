@@ -17,13 +17,13 @@ const styles = ({ fontFamily }: Theme) => ({
   },
 });
 
-const LogoRenderer: React.FC<PropsWithChildren<JssInjectedProps>> = ({ classes, children }) {
+const LogoRenderer: React.FC<PropsWithChildren<JssInjectedProps>> = ({ classes, children }) => {
   return (
     <h1 className={classes.logo}>
       <img src={logo} alt="Kubevirt UI" className={classes.image} />
       {children}
     </h1>
   );
-}
+};
 
 export default Styled(styles)(LogoRenderer);
