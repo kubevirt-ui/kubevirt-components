@@ -4,9 +4,13 @@
 
 # @kubevirt-ui/components
 
+![alt gopher network](https://raw.githubusercontent.com/kubevirt-ui/kubevirt-components/main/images/logos.png)
+
 React Component Library for Kubevirt UI
 
-[See the documentaion](https://kubevirt-ui.github.io/kubevirt-components/)
+## Documentation
+
+Auto generated docs for [KubeVirt UI Components](https://kubevirt-ui.github.io/kubevirt-components/)
 
 ## Add to your project
 
