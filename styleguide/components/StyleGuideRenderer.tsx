@@ -3,6 +3,7 @@ import { Theme } from 'react-styleguidist/lib/typings/RsgTheme';
 import classnames from 'classnames';
 import Logo from 'rsg-components/Logo';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
+import { GITHUB_KUBEVIRT_COMPONENT_URL } from 'styleguide/constants';
 
 const xsmall = '@media (max-width: 600px)';
 
@@ -109,10 +110,10 @@ const styles = ({ fontFamily, color, mq, sidebarWidth, space }: Theme) => ({
   },
 });
 
-function NavBar({
+const NavBar: React.FC<Pick<PropsWithChildren<StyleGuideRendererProps>, 'classes' | 'title'>> = ({
   classes,
   title,
-}: Pick<PropsWithChildren<StyleGuideRendererProps>, 'classes' | 'title'>) {
+}) => {
   return (
     <div className={classes.navbar}>
       <div className={classes.bar}>
@@ -120,17 +121,14 @@ function NavBar({
           <Logo>{title}</Logo>
         </a>
         <nav className={classes.nav}>
-          <a
-            className={classes.headerLink}
-            href="https://github.com/kubevirt-ui/kubevirt-components"
-          >
+          <a className={classes.headerLink} href={GITHUB_KUBEVIRT_COMPONENT_URL}>
             GitHub
           </a>
         </nav>
       </div>
     </div>
   );
-}
+};
 
 interface StyleGuideRendererProps extends JssInjectedProps {
   title: string;

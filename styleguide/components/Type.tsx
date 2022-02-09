@@ -1,6 +1,7 @@
 import React from 'react';
 import { Theme } from 'react-styleguidist/lib/typings';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
+import { GITHUB_KUBEVIRT_API_URL } from 'styleguide/constants';
 
 export const styles = ({ fontFamily, fontSize, color }: Theme) => ({
   type: {
@@ -16,12 +17,13 @@ interface TypeProps extends JssInjectedProps {
 }
 
 function getGithubTypeHref(type: string): string {
-  return `https://github.com/kubevirt-ui/kubevirt-api/blob/main/${
-    KUBEVIRT_CONSTS.KUBEVIRT_MODEL_PATH
-  }/${type.replace(/\[\]/, '')}.ts`;
+  return new URL(
+    `${KUBEVIRT_CONSTS.KUBEVIRT_MODEL_PATH}/${type.replace(/\[\]/, '')}.ts`,
+    GITHUB_KUBEVIRT_API_URL,
+  ).toString();
 }
 
-function TypeRenderer({ classes, children }: TypeProps) {
+const TypeRenderer: React.FC<TypeProps> = ({ classes, children }) => {
   let type = children;
 
   if (typeof children === 'string' && KUBEVIRT_TYPES.includes(children.replace(/\[\]/, '')))
@@ -32,6 +34,6 @@ function TypeRenderer({ classes, children }: TypeProps) {
     );
 
   return <span className={classes.type}>{type}</span>;
-}
+};
 
 export default Styled<TypeProps>(styles)(TypeRenderer);

@@ -17,7 +17,7 @@ const styles = ({ fontFamily }: Theme) => ({
   },
 });
 
-function LogoRenderer({ classes, children }: PropsWithChildren<JssInjectedProps>) {
+const LogoRenderer: React.FC<PropsWithChildren<JssInjectedProps>> = ({ classes, children }) {
   return (
     <h1 className={classes.logo}>
       <img src={logo} alt="Kubevirt UI" className={classes.image} />

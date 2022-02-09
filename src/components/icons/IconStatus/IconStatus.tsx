@@ -10,21 +10,23 @@ import {
 } from '@patternfly/react-icons';
 import { global_danger_color_100 as dangerColor } from '@patternfly/react-tokens/dist/js/global_danger_color_100';
 
-interface IconProps {
+import { faSpin } from './utils';
+
+type IconProps = {
   title: string;
-}
+};
 
-function RedExclamationCircleIcon({ title }: IconProps): React.ReactElement {
-  return <ExclamationCircleIcon color={dangerColor.value} title={title} />;
-}
+const RedExclamationCircleIcon: React.FC<IconProps> = ({ title }): React.ReactElement => (
+  <ExclamationCircleIcon color={dangerColor.value} title={title} />
+);
 
-function SpinningInProgressIcon({ title }: IconProps): React.ReactElement {
-  return <InProgressIcon title={title} className="fa-spin" />;
-}
+const SpinningInProgressIcon: React.FC<IconProps> = ({ title }): React.ReactElement => (
+  <InProgressIcon title={title} className={faSpin} />
+);
 
-function SpinningSyncAltIcon({ title }: IconProps): React.ReactElement {
-  return <SyncAltIcon title={title} className="fa-spin" />;
-}
+const SpinningSyncAltIcon: React.FC<IconProps> = ({ title }): React.ReactElement => (
+  <SyncAltIcon title={title} className={faSpin} />
+);
 
 export enum statuses {
   Stopped = 'Stopped',
@@ -48,13 +50,7 @@ export enum statuses {
 }
 
 const statusToIconHandler = {
-  get: (
-    mapper: Record<
-      statuses,
-      React.ComponentClass | React.FC | ((props: IconProps) => React.ReactElement)
-    >,
-    status: statuses,
-  ) => {
+  get: (mapper: Record<statuses, React.ComponentClass | React.FC<IconProps>>, status: statuses) => {
     const statusIcon = mapper[status];
     if (statusIcon) return statusIcon;
 
@@ -145,9 +141,11 @@ export type IconStatusProps = {
   status: string;
 };
 
-export function IconStatus({ status }: IconStatusProps) {
+export const IconStatus: React.FC<IconStatusProps> = React.memo(({ status }) => {
   const Icon = statusToIcon[status as statuses];
   const title = statusToLabel[status];
 
   return <Icon title={title} />;
-}
+});
+
+IconStatus.displayName = 'IconStatus';
