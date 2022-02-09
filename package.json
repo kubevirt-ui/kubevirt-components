@@ -20,7 +20,7 @@
     "styleguide:build": "styleguidist build"
   },
   "dependencies": {
-    "@kubevirt-ui/kubevirt-api": "^0.0.30",
+    "@kubevirt-ui/kubevirt-api": "0.0.32",
     "@patternfly/patternfly": "^4.171.1",
     "@patternfly/react-core": "^4.192.15",
     "classnames": "^2.3.1"

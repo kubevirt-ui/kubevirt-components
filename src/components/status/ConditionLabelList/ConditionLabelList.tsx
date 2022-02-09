@@ -1,14 +1,15 @@
 import * as React from 'react';
 
+import { V1KubeVirtCondition } from '@kubevirt-ui/kubevirt-api/kubevirt';
 import { LabelGroup } from '@patternfly/react-core';
 
-import { ConditionLabel, k8sStatusConditions } from '../ConditionLabel';
+import { ConditionLabel } from '../ConditionLabel';
 
 /**
  * VirtualMachineCondition renders a list of a k8s resource conditions
  * */
 export interface ConditionLabelListProps {
-  conditions: k8sStatusConditions[];
+  conditions: V1KubeVirtCondition[];
 }
 
 export const ConditionLabelList: React.FC<ConditionLabelListProps> = React.memo(

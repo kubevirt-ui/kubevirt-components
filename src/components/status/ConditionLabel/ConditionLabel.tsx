@@ -1,18 +1,12 @@
 import * as React from 'react';
 
+import { V1KubeVirtCondition } from '@kubevirt-ui/kubevirt-api/kubevirt';
 import { Label, Popover, PopoverPosition } from '@patternfly/react-core';
-
-export interface k8sStatusConditions {
-  type: string;
-  status?: string;
-  reason?: string;
-  message?: string;
-}
 
 /**
  * ConditionLabel renders a k8sStatusConditions
  */
-export const ConditionLabel: React.FC<k8sStatusConditions> = React.memo((condition) => {
+export const ConditionLabel: React.FC<V1KubeVirtCondition> = React.memo((condition) => {
   const preventLabelLink = React.useCallback((e) => e.preventDefault(), []);
 
   const getBodyContent = React.useCallback(

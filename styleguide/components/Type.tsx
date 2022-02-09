@@ -10,16 +10,15 @@ export const styles = ({ fontFamily, fontSize, color }: Theme) => ({
   },
 });
 
-const KUBEVIRT_TYPES = KUBEVIRT_CONSTS.allTypes;
+const KUBEVIRT_TYPES = KUBEVIRT_CONSTS.kubevirtTypes;
 interface TypeProps extends JssInjectedProps {
   children: React.ReactNode;
 }
 
 function getGithubTypeHref(type: string): string {
-  return `https://github.com/kubevirt-ui/kubevirt-api/blob/main/kubevirt/models/${type.replace(
-    /\[\]/,
-    '',
-  )}.ts`;
+  return `https://github.com/kubevirt-ui/kubevirt-api/blob/main/${
+    KUBEVIRT_CONSTS.KUBEVIRT_MODEL_PATH
+  }/${type.replace(/\[\]/, '')}.ts`;
 }
 
 function TypeRenderer({ classes, children }: TypeProps) {

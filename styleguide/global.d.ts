@@ -8,4 +8,9 @@ declare module '*.svg' {
   export default value;
 }
 
-declare const KUBEVIRT_CONSTS: { allTypes: string[] };
+declare const KUBEVIRT_CONSTS: {
+  kubevirtTypes: string[];
+  kubernetesTypes: string[];
+  KUBEVIRT_MODEL_PATH: string;
+  KUBERNETES_MODEL_PATH: string;
+};

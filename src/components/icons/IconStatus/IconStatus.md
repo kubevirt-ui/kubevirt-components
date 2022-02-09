@@ -1,7 +1,7 @@
 Examples
 
 ```js
-const printableVmStatus = {
+const possibleStatuses = {
   Stopped: 'Stopped',
   Migrating: 'Migrating',
   Provisioning: 'Provisioning',
@@ -25,14 +25,14 @@ const printableVmStatus = {
 <table className='pf-c-table pf-m-grid-md'>
 <thead>
   <tr>
-    <th width='250px'>Printable Status</th>
+    <th>Printable Status</th>
     <th>Icon</th>
   </tr>
   </thead>
-  {Object.values(printableVmStatus).map(status => (
+  {Object.values(possibleStatuses).map(status => (
     <tr>
       <td>{status}</td>
-      <td><VMIconStatus vmPrintableStatus={status} /></td>
+      <td><IconStatus status={status} /></td>
     </tr>
   ))}
 </table>

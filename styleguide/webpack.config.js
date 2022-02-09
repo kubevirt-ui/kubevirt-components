@@ -4,8 +4,19 @@ const fs = require('fs');
 const webpack = require('webpack');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
-const allKubevirtTypes = fs
-  .readdirSync(path.resolve(__dirname, '../node_modules/@kubevirt-ui/kubevirt-api/kubevirt/models'))
+const KUBERNETES_MODEL_PATH = 'kubernetes/models';
+const KUBEVIRT_MODEL_PATH = 'kubevirt/models';
+
+const kubernetesTypes = fs
+  .readdirSync(
+    path.resolve(__dirname, `../node_modules/@kubevirt-ui/kubevirt-api/${KUBERNETES_MODEL_PATH}`),
+  )
+  .map((filename) => filename.replace(/\.[^/.]+$/, ''));
+
+const kubevirtTypes = fs
+  .readdirSync(
+    path.resolve(__dirname, `../node_modules/@kubevirt-ui/kubevirt-api/${KUBEVIRT_MODEL_PATH}`),
+  )
   .map((filename) => filename.replace(/\.[^/.]+$/, ''));
 
 module.exports = () => {
@@ -65,7 +76,10 @@ module.exports = () => {
     plugins: [
       new webpack.DefinePlugin({
         KUBEVIRT_CONSTS: JSON.stringify({
-          allTypes: allKubevirtTypes,
+          kubevirtTypes,
+          kubernetesTypes,
+          KUBEVIRT_MODEL_PATH,
+          KUBERNETES_MODEL_PATH,
         }),
       }),
     ],
