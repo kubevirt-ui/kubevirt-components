@@ -55,12 +55,10 @@ const statusToIconHandler = {
     >,
     status: statuses,
   ) => {
-    if (!status) return UnknownIcon;
-
     const statusIcon = mapper[status];
     if (statusIcon) return statusIcon;
 
-    return SpinningInProgressIcon;
+    return UnknownIcon;
   },
 };
 
@@ -88,23 +86,21 @@ export const statusToIcon = new Proxy(
   statusToIconHandler,
 );
 
-const statusLabelHandler = {
-  get: (mapper: Record<string, string>, status: string) => {
-    if (!status) return mapper[statuses.Unknown];
-
-    const statusLabel = mapper[status];
-    if (statusLabel) return statusLabel;
-
-    return status;
-  },
-};
-
 export enum customStatusLabels {
   Starting = 'Starting',
   Error = 'Error',
   Other = 'Other',
   Deleting = 'Deleting',
 }
+
+const statusLabelHandler = {
+  get: (mapper: Record<string, string>, status: string) => {
+    const statusLabel = mapper[status];
+    if (statusLabel) return statusLabel;
+
+    return customStatusLabels.Other;
+  },
+};
 
 export const statusToLabel = new Proxy(
   {

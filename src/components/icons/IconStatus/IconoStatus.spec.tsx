@@ -6,7 +6,15 @@ import { IconStatus, statuses, statusToLabel } from './IconStatus';
 
 afterEach(cleanup);
 
-describe('Render VMIconStatus', () => {
+describe('Render IconStatus', () => {
+  it('unknown condition', () => {
+    const { asFragment } = render(<IconStatus status="unknown status" />);
+    expect(asFragment()).toMatchSnapshot();
+
+    const title = statusToLabel[statuses.Unknown];
+    screen.getByTitle(title);
+  });
+
   Object.values(statuses).forEach((status) => {
     return it(`${status}`, () => {
       const { asFragment } = render(<IconStatus status={status} />);

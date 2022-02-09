@@ -30,7 +30,7 @@ const possibleStatuses = {
   </tr>
   </thead>
   {Object.values(possibleStatuses).map(status => (
-    <tr>
+    <tr key={status}>
       <td>{status}</td>
       <td><IconStatus status={status} /></td>
     </tr>
