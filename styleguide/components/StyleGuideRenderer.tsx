@@ -116,7 +116,7 @@ function NavBar({
   return (
     <div className={classes.navbar}>
       <div className={classes.bar}>
-        <a href="/#" className={classes.anchorAsText}>
+        <a href={document.URL.replace(/#.*$/, '#')} className={classes.anchorAsText}>
           <Logo>{title}</Logo>
         </a>
         <nav className={classes.nav}>

@@ -7,8 +7,8 @@ const customTheme: RecursivePartial<Theme> = {
     monospace: ['var(--pf-global--FontFamily--sans-serif)'],
   },
   fontSize: {
-    base: 13,
-    text: 14,
+    base: 15,
+    text: 15,
     small: 12,
     h1: 44,
     h2: 28,
@@ -23,6 +23,7 @@ const customTheme: RecursivePartial<Theme> = {
     name: '#690',
     sidebarBackground: '#fff',
   },
+  sidebarWidth: 300,
 };
 
 export default customTheme;
