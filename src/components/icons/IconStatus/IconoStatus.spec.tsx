@@ -27,7 +27,9 @@ describe('Render IconStatus', () => {
 
   it('data-test atrtibute added', () => {
     const dataTest = 'test-id';
-    const { asFragment } = render(<IconStatus status={statuses.Starting} data-test={dataTest} />);
+    const { asFragment } = render(
+      <IconStatus status={statuses.Starting} data-test-id={dataTest} />,
+    );
     expect(asFragment()).toMatchSnapshot();
 
     screen.getByTestId(dataTest);

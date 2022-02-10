@@ -5,5 +5,5 @@ import 'regenerator-runtime/runtime';
 import '@testing-library/jest-dom';
 
 configure({
-  testIdAttribute: 'data-test',
+  testIdAttribute: 'data-test-id',
 });

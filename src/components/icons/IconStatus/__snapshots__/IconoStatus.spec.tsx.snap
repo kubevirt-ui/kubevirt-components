@@ -426,7 +426,7 @@ exports[`Render IconStatus data-test atrtibute added 1`] = `
   <svg
     aria-labelledby="icon-title-19"
     class="fa-spin"
-    data-test="test-id"
+    data-test-id="test-id"
     fill="currentColor"
     height="1em"
     role="img"
