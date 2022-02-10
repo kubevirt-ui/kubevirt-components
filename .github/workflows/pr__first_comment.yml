@@ -22,7 +22,7 @@ jobs:
           )
         uses: mshick/add-pr-comment@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BOT_PAT }}
         with:
           message: |
             Hi, welcome to kubevirt ui, thank you this pull request 💖✨
@@ -33,7 +33,7 @@ jobs:
           contains(steps.owners.outputs.reviewers, github.event.comment.user.login || 'null')
         uses: mshick/add-pr-comment@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BOT_PAT }}
         with:
           message: |
             ${{ github.event.comment.user.login }} hi, great to see you.
