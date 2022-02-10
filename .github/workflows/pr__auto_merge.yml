@@ -17,6 +17,7 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
+          header: 'Labels status comment'
           recreate: true
           message: |
             ✨PR Status ✨
