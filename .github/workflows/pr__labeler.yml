@@ -59,7 +59,7 @@ jobs:
           repo-token: ${{ secrets.BOT_PAT }}
           remove-labels: 'bug'
 
-      - name: Comment on user credentials (not approve)
+      - name: Comment on user credentials (not approver)
         if: |
           contains(github.event.comment.html_url, '/pull/') &&
           contains(github.event.comment.body, '/approve') &&
@@ -67,6 +67,7 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
+          header: 'cred-no-approver'
           message: |
             Hi, thank you for reviewing this pull request,
             Only users listed in the OWNERS file can approve this pull request.
@@ -83,6 +84,7 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
+          header: 'cred-no-reviewer'
           message: |
             Hi, thank you for reviewing this pull request,
             Only users listed in the OWNERS file can lgtm or hold this pull request.
@@ -95,7 +97,7 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
-          number: ${{github.event.number}}
+          header: 'slef-lgtm'
           message: |
             Hi, are you the pull request owner?.
 
