@@ -32,7 +32,7 @@ When a componenet used by an application is stable it can be published in this c
 - Redistribute the component as they are
 - Modified and create better components based on the components in this repository
 
-## How to document my component when contributing to this repository? 
+## How to document my component when contributing to this repository?  
 
 Before moving a component to this repo make sure the code is [documented](https://tsdoc.org/) with descriptions and
 examples in a [markdown](https://www.markdownguide.org/) doc as needed to help users who are not familiar with the application
