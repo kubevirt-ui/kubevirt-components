@@ -94,7 +94,7 @@ jobs:
           contains(github.event.comment.html_url, '/pull/') &&
           contains(github.event.comment.body, '/lgtm') &&
           github.event.issue.user.login == github.event.comment.user.login
-         uses: mshick/add-pr-comment@v1
+        uses: mshick/add-pr-comment@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
