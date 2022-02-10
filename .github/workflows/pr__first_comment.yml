@@ -1,6 +1,6 @@
 name: Add first comment to a new PR
 on:
-  pull_request:
+  pull_request_target:
     types:
       - opened
 permissions: write-all
