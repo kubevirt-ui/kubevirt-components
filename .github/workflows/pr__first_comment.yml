@@ -3,9 +3,9 @@ on:
   pull_request:
     types:
       - opened
+permissions: write-all
 jobs:
   labeler:
-    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
