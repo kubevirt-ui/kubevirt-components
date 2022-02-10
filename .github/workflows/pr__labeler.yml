@@ -66,7 +66,7 @@ jobs:
           !contains(steps.owners.outputs.approvers, github.event.comment.user.login || 'null')
         uses: mshick/add-pr-comment@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BOT_PAT }}
         with:
           message: |
             Hi, thank you for reviewing this pull request,
@@ -83,7 +83,7 @@ jobs:
           !contains(steps.owners.outputs.reviewers, github.event.comment.user.login || 'null')
         uses: mshick/add-pr-comment@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BOT_PAT }}
         with:
           message: |
             Hi, thank you for reviewing this pull request,
@@ -96,7 +96,7 @@ jobs:
           github.event.issue.user.login == github.event.comment.user.login
         uses: mshick/add-pr-comment@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BOT_PAT }}
         with:
           message: |
             Hi, are you the pull request owner?.
