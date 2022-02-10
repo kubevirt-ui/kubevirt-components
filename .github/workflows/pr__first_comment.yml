@@ -5,6 +5,7 @@ on:
       - opened
 jobs:
   labeler:
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
