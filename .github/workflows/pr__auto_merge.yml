@@ -12,7 +12,7 @@ jobs:
   automerge:
     runs-on: ubuntu-latest
     steps:
-      - name: Merge Comment
+      - name: Labels status comment
         if: github.event_name == 'pull_request_target'
         uses: marocchino/sticky-pull-request-comment@v2
         with:
@@ -30,10 +30,10 @@ jobs:
               
               _This Pull Request will not merge until all required tests have passed_
 
-      - name: Auto Merge
+      - name: Auto merge if labels ok # And required cheacks pass, enforced by user credentials
         id: automerge
         uses: 'pascalgn/automerge-action@v0.14.3'
         env:
-          GITHUB_TOKEN: '${{ secrets.KUBE_BOT_PAT }}'
+          GITHUB_TOKEN: '${{ secrets.KUBE_BOT_PAT }}' # User must not have admin credentials
           MERGE_LABELS: 'approved,lgtm,!WIP,!hold'
           MERGE_METHOD: squash

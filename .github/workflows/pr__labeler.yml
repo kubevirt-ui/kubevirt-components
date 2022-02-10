@@ -38,7 +38,8 @@ jobs:
         if: |
           contains(github.event.pull_request.title, 'wip') ||
           (contains(github.event.comment.html_url, '/pull/') && 
-          contains(github.event.comment.body, '/wip'))
+          contains(github.event.comment.body, '/wip')) && 
+          !contains(github.event.comment.body, '/wip cancel')
         uses: andymckay/labeler@master
         with:
           repo-token: ${{ secrets.BOT_PAT }}
@@ -47,7 +48,7 @@ jobs:
       - name: Remove WIP label
         if: |
           contains(github.event.comment.html_url, '/pull/') && 
-          contains(github.event.comment.body, '/remove wip')
+          contains(github.event.comment.body, '/wip cancel')
         uses: andymckay/labeler@master
         with:
           repo-token: ${{ secrets.BOT_PAT }}
@@ -57,7 +58,8 @@ jobs:
         if: |
           contains(github.event.pull_request.title, 'bug') ||
           (contains(github.event.comment.html_url, '/pull/') && 
-          contains(github.event.comment.body, '/bug'))
+          contains(github.event.comment.body, '/bug')) && 
+          !contains(github.event.comment.body, '/bug cancel')
         uses: andymckay/labeler@master
         with:
           repo-token: ${{ secrets.BOT_PAT }}
@@ -66,11 +68,56 @@ jobs:
       - name: Remove bug label
         if: |
           contains(github.event.comment.html_url, '/pull/') && 
-          contains(github.event.comment.body, '/remove bug')
+          contains(github.event.comment.body, '/bug cancel')
         uses: andymckay/labeler@master
         with:
           repo-token: ${{ secrets.BOT_PAT }}
           remove-labels: 'bug'
+
+      - name: Comment on user credentials (not approve)
+        if: |
+          contains(github.event.comment.html_url, '/pull/') &&
+          contains(github.event.comment.body, '/approve') &&
+          !contains(steps.approvers.outputs.approvers, github.event.comment.user.login || 'null')
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
+          header: 'pr-status'
+          recreate: true
+          message: |
+            Hi, thank you for reviewing this pull request,
+            Only users listed in the OWNERS file can approve this pull request.
+
+      - name: Comment on user credentials (not reviewers)
+        if: |
+          contains(github.event.comment.html_url, '/pull/') &&
+          (
+            contains(github.event.comment.body, '/approve') ||
+            contains(github.event.comment.body, '/lgtm') ||
+            contains(github.event.comment.body, '/hold') ||
+          ) &&
+          !contains(steps.reviewers.outputs.reviewers, github.event.comment.user.login || 'null')
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
+          header: 'pr-status'
+          recreate: true
+          message: |
+            Hi, thank you for reviewing this pull request,
+            Only users listed in the OWNERS file can lgtm or hold this pull request.
+      
+      - name: Comment on user credentials (can't lgtm your PR)
+        if: |
+          contains(github.event.comment.html_url, '/pull/') &&
+          contains(github.event.comment.body, '/lgtm') &&
+          github.event.issue.user.login == github.event.comment.user.login
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
+          header: 'pr-status'
+          recreate: true
+          message: |
+            Hi, are you the pull request owner?.
 
       - name: Add Approved label
         if: |
@@ -85,7 +132,7 @@ jobs:
       - name: Remove Approved label
         if: |
           contains(github.event.comment.html_url, '/pull/') &&
-          contains(github.event.comment.body, '/remove approve') &&
+          contains(github.event.comment.body, '/approve cancel') &&
           contains(steps.approvers.outputs.approvers, github.event.comment.user.login || 'null')
         uses: andymckay/labeler@master
         with:
@@ -96,6 +143,7 @@ jobs:
         if: |
           contains(github.event.comment.html_url, '/pull/') && 
           contains(github.event.comment.body, '/lgtm') &&
+          !contains(github.event.comment.body, '/lgtm cancel') && 
           contains(steps.reviewers.outputs.reviewers, github.event.comment.user.login || 'null') &&
           github.event.issue.user.login != github.event.comment.user.login
         uses: andymckay/labeler@master
@@ -107,6 +155,7 @@ jobs:
         if: |
           contains(github.event.comment.html_url, '/pull/') && 
           contains(github.event.comment.body, '/lgtm') &&
+          !contains(github.event.comment.body, '/lgtm cancel') && 
           contains(steps.approvers.outputs.approvers, github.event.comment.user.login || 'null') &&
           github.event.issue.user.login != github.event.comment.user.login
         uses: andymckay/labeler@master
@@ -117,7 +166,7 @@ jobs:
       - name: Remove LGTM label
         if: |
           contains(github.event.comment.html_url, '/pull/') && 
-          contains(github.event.comment.body, '/remove lgtm') &&
+          contains(github.event.comment.body, '/lgtm cancel') &&
           contains(steps.reviewers.outputs.reviewers, github.event.comment.user.login || 'null')
         uses: andymckay/labeler@master
         with:
@@ -136,8 +185,9 @@ jobs:
       - name: Add Hold label
         if: |
           contains(github.event.comment.html_url, '/pull/') && 
-          contains(github.event.comment.body, '/hold') &&
-          contains(steps.approvers.outputs.approvers, github.event.comment.user.login || 'null')
+          contains(github.event.comment.body, '/hold') && 
+          contains(github.event.comment.body, '/hold cancel') &&
+          contains(steps.reviewers.outputs.reviewers, github.event.comment.user.login || 'null')
         uses: andymckay/labeler@master
         with:
           repo-token: ${{ secrets.BOT_PAT }}
@@ -146,8 +196,8 @@ jobs:
       - name: Remove Hold label
         if: |
           contains(github.event.comment.html_url, '/pull/') && 
-          contains(github.event.comment.body, '/remove hold') &&
-          contains(steps.approvers.outputs.approvers, github.event.comment.user.login || 'null')
+          contains(github.event.comment.body, '/hold cancel') &&
+          contains(steps.reviewers.outputs.reviewers, github.event.comment.user.login || 'null')
         uses: andymckay/labeler@master
         with:
           repo-token: ${{ secrets.BOT_PAT }}
