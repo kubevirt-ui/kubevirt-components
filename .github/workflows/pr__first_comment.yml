@@ -23,7 +23,7 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
-          header: 'pr-status'
+          header: 'welcome-comment'
           recreate: true
           message: |
             Hi, welcome to kubevirt ui, thank you this pull request ✨
@@ -35,7 +35,7 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
-          header: 'pr-status'
+          header: 'welcome-comment'
           recreate: true
           message: |
             ${{ github.event.comment.user.login }} hi, great to see you.
