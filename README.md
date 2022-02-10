@@ -25,7 +25,7 @@ Kuevirt UI is based on [PatternFly](https://www.patternfly.org/) and [Openshift 
 
 ## When should I contribute my components to this repository?
 
-When a componenet used by an application is stable it can be published in this components repository so public users could:
+When a componenet used by an application is stable it can be published in this components repository so public users could: 
 
 - Use the components for exiting new applications
 - Study how the component works
