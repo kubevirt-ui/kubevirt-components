@@ -67,7 +67,7 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
-          header: 'labeler-comment'
+          header: 'labeler-comment-not-an-approver'
           recreate: true
           message: |
             Hi, thank you for reviewing this pull request,
@@ -85,7 +85,7 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
-          header: 'labeler-comment'
+          header: 'labeler-comment-not-a-reviewer'
           recreate: true
           message: |
             Hi, thank you for reviewing this pull request,
@@ -99,7 +99,7 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
-          header: 'labeler-comment'
+          header: 'labeler-comment-no-self-lgtm'
           recreate: true
           message: |
             Hi, are you the pull request owner?.
