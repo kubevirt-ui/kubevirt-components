@@ -96,6 +96,7 @@ jobs:
           github.event.issue.user.login == github.event.comment.user.login
         uses: marocchino/sticky-pull-request-comment@v2
         with:
+          number: ${{ steps.finder.outputs.pr }}
           GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
           header: 'welcome-no-owner'
           message: |
