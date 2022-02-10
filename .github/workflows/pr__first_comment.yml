@@ -20,11 +20,10 @@ jobs:
             contains(steps.owners.outputs.approvers, github.event.comment.user.login || 'null') ||
             contains(steps.owners.outputs.reviewers, github.event.comment.user.login || 'null')
           )
-        uses: marocchino/sticky-pull-request-comment@v2
+        uses: mshick/add-pr-comment@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
-          header: 'welcome-comment-none-owner'
-          recreate: true
           message: |
             Hi, welcome to kubevirt ui, thank you this pull request 💖✨
 
@@ -32,10 +31,9 @@ jobs:
         if: |
           contains(steps.owners.outputs.approvers, github.event.comment.user.login || 'null') ||
           contains(steps.owners.outputs.reviewers, github.event.comment.user.login || 'null')
-        uses: marocchino/sticky-pull-request-comment@v2
+        uses: mshick/add-pr-comment@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
-          header: 'welcome-comment-owner'
-          recreate: true
           message: |
             ${{ github.event.comment.user.login }} hi, great to see you.

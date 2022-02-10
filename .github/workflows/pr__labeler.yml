@@ -64,11 +64,10 @@ jobs:
           contains(github.event.comment.html_url, '/pull/') &&
           contains(github.event.comment.body, '/approve') &&
           !contains(steps.owners.outputs.approvers, github.event.comment.user.login || 'null')
-        uses: marocchino/sticky-pull-request-comment@v2
+        uses: mshick/add-pr-comment@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
-          header: 'labeler-comment-not-an-approver'
-          recreate: true
           message: |
             Hi, thank you for reviewing this pull request,
             Only users listed in the OWNERS file can approve this pull request.
@@ -82,11 +81,10 @@ jobs:
             contains(github.event.comment.body, '/hold')
           ) &&
           !contains(steps.owners.outputs.reviewers, github.event.comment.user.login || 'null')
-        uses: marocchino/sticky-pull-request-comment@v2
+        uses: mshick/add-pr-comment@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
-          header: 'labeler-comment-not-a-reviewer'
-          recreate: true
           message: |
             Hi, thank you for reviewing this pull request,
             Only users listed in the OWNERS file can lgtm or hold this pull request.
@@ -96,11 +94,10 @@ jobs:
           contains(github.event.comment.html_url, '/pull/') &&
           contains(github.event.comment.body, '/lgtm') &&
           github.event.issue.user.login == github.event.comment.user.login
-        uses: marocchino/sticky-pull-request-comment@v2
+         uses: mshick/add-pr-comment@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
-          header: 'labeler-comment-no-self-lgtm'
-          recreate: true
           message: |
             Hi, are you the pull request owner?.
 
