@@ -1,0 +1,50 @@
+name: Add first comment to a new PR
+on:
+  pull_request:
+    types:
+      - opened
+jobs:
+  labeler:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.9'
+      - run: pip install yq
+
+      - name: Get Reviewers
+        id: reviewers
+        run: echo ::set-output name=reviewers::$(cat ./OWNERS | yq .reviewers -M | grep ' ' | sed 's/[", -]//g')
+
+      - name: Get Approvers
+        id: approvers
+        run: echo ::set-output name=approvers::$(cat ./OWNERS | yq .approvers -M | grep ' ' | sed 's/[", -]//g')
+   
+      - name: Add welcome comment (none owner)
+        if: |
+          !(
+            contains(steps.approvers.outputs.approvers, github.event.comment.user.login || 'null') ||
+            contains(steps.reviewers.outputs.reviewers, github.event.comment.user.login || 'null')
+          )
+        uses: andymckay/labeler@master
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
+          header: 'pr-status'
+          recreate: true
+          message: |
+            Hi, welocme to kubevirt ui, thank you this pull request ✨
+      
+      - name: Add welcome comment (owner)
+        if: |
+          contains(steps.approvers.outputs.approvers, github.event.comment.user.login || 'null') ||
+          contains(steps.reviewers.outputs.reviewers, github.event.comment.user.login || 'null')
+        with:
+          GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
+          header: 'pr-status'
+          recreate: true
+          message: |
+            ${{ github.event.comment.user.login }} hi, great to see you.

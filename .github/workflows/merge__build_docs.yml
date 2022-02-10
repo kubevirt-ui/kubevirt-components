@@ -1,4 +1,4 @@
-name: Styleguide
+name: Build docs on merge
 on:
   push:
     branches:
