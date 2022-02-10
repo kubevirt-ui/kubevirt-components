@@ -9,39 +9,30 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Set up Python
-        uses: actions/setup-python@v1
-        with:
-          python-version: '3.9'
-      - run: pip install yq
-
-      - name: Get Reviewers
-        id: reviewers
-        run: echo ::set-output name=reviewers::$(cat ./OWNERS | yq .reviewers -M | grep ' ' | sed 's/[", -]//g')
-
-      - name: Get Approvers
-        id: approvers
-        run: echo ::set-output name=approvers::$(cat ./OWNERS | yq .approvers -M | grep ' ' | sed 's/[", -]//g')
+        
+      - name: Parse OWNERS
+        id: owners
+        uses: upalatucci/get-owners-action@v1
    
       - name: Add welcome comment (none owner)
         if: |
           !(
-            contains(steps.approvers.outputs.approvers, github.event.comment.user.login || 'null') ||
-            contains(steps.reviewers.outputs.reviewers, github.event.comment.user.login || 'null')
+            contains(steps.owners.outputs.approvers, github.event.comment.user.login || 'null') ||
+            contains(steps.owners.outputs.reviewers, github.event.comment.user.login || 'null')
           )
-        uses: andymckay/labeler@master
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
           header: 'pr-status'
           recreate: true
           message: |
-            Hi, welocme to kubevirt ui, thank you this pull request ✨
+            Hi, welcome to kubevirt ui, thank you this pull request ✨
       
       - name: Add welcome comment (owner)
         if: |
-          contains(steps.approvers.outputs.approvers, github.event.comment.user.login || 'null') ||
-          contains(steps.reviewers.outputs.reviewers, github.event.comment.user.login || 'null')
+          contains(steps.owners.outputs.approvers, github.event.comment.user.login || 'null') ||
+          contains(steps.owners.outputs.reviewers, github.event.comment.user.login || 'null')
+        uses: marocchino/sticky-pull-request-comment@v2
         with:
           GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
           header: 'pr-status'
