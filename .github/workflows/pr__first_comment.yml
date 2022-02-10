@@ -21,8 +21,6 @@ jobs:
             contains(steps.owners.outputs.reviewers, github.event.comment.user.login || 'null')
           )
         uses: mshick/add-pr-comment@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.BOT_PAT }}
         with:
           repo-token: ${{ secrets.BOT_PAT }}
           message: |
