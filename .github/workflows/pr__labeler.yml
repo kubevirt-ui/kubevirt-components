@@ -67,7 +67,7 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
-          header: 'welcome-no-owner'
+          recreate: true
           message: |
             Hi, thank you for reviewing this pull request,
             Only users listed in the OWNERS file can approve this pull request.
@@ -84,7 +84,7 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
-          header: 'welcome-no-owner'
+          recreate: true
           message: |
             Hi, thank you for reviewing this pull request,
             Only users listed in the OWNERS file can lgtm or hold this pull request.
@@ -96,9 +96,8 @@ jobs:
           github.event.issue.user.login == github.event.comment.user.login
         uses: marocchino/sticky-pull-request-comment@v2
         with:
-          number: ${{ steps.finder.outputs.pr }}
           GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
-          header: 'welcome-no-owner'
+          recreate: true
           message: |
             Hi, are you the pull request owner?.
 
