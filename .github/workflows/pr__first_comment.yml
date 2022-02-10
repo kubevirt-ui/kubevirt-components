@@ -5,7 +5,7 @@ on:
       - opened
 permissions: write-all
 jobs:
-  labeler:
+  welcome-comment:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -18,8 +18,8 @@ jobs:
       - name: Add welcome comment - none owner
         if: |
           !(
-            contains(steps.owners.outputs.approvers, github.event.comment.user.login || 'null') ||
-            contains(steps.owners.outputs.reviewers, github.event.comment.user.login || 'null')
+            contains(steps.owners.outputs.approvers, github.event.pull_request.user.login || 'null') ||
+            contains(steps.owners.outputs.reviewers, github.event.pull_request.user.login || 'null')
           )
         uses: marocchino/sticky-pull-request-comment@v2
         with:
@@ -31,12 +31,12 @@ jobs:
 
       - name: Add welcome comment - owner
         if: |
-          contains(steps.owners.outputs.approvers, github.event.comment.user.login || 'null') ||
-          contains(steps.owners.outputs.reviewers, github.event.comment.user.login || 'null')
+          contains(steps.owners.outputs.approvers, github.event.pull_request.user.login || 'null') ||
+          contains(steps.owners.outputs.reviewers, github.event.pull_request.user.login || 'null')
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           number: ${{ steps.finder.outputs.pr }}
           GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
           header: 'welcome-owner'
           message: |
-            ${{ github.event.comment.user.login }} hi, great to see you.
+            ${{ github.event.pull_request.user.login }} hi, great to see you.
