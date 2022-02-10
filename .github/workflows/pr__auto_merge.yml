@@ -18,7 +18,7 @@ jobs:
         with:
           GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
           header: 'Labels status comment'
-          recreate: true
+          delete: true
           message: |
             ✨PR Status ✨
             | Condition |  |
