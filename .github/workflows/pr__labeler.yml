@@ -64,10 +64,10 @@ jobs:
           contains(github.event.comment.html_url, '/pull/') &&
           contains(github.event.comment.body, '/approve') &&
           !contains(steps.owners.outputs.approvers, github.event.comment.user.login || 'null')
-        uses: mshick/add-pr-comment@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.BOT_PAT }}
+        uses: marocchino/sticky-pull-request-comment@v2
         with:
+          GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
+          header: 'welcome-no-owner'
           message: |
             Hi, thank you for reviewing this pull request,
             Only users listed in the OWNERS file can approve this pull request.
@@ -81,10 +81,10 @@ jobs:
             contains(github.event.comment.body, '/hold')
           ) &&
           !contains(steps.owners.outputs.reviewers, github.event.comment.user.login || 'null')
-        uses: mshick/add-pr-comment@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.BOT_PAT }}
+        uses: marocchino/sticky-pull-request-comment@v2
         with:
+          GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
+          header: 'welcome-no-owner'
           message: |
             Hi, thank you for reviewing this pull request,
             Only users listed in the OWNERS file can lgtm or hold this pull request.
@@ -94,10 +94,10 @@ jobs:
           contains(github.event.comment.html_url, '/pull/') &&
           contains(github.event.comment.body, '/lgtm') &&
           github.event.issue.user.login == github.event.comment.user.login
-        uses: mshick/add-pr-comment@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.BOT_PAT }}
+        uses: marocchino/sticky-pull-request-comment@v2
         with:
+          GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
+          header: 'welcome-no-owner'
           message: |
             Hi, are you the pull request owner?.
 
@@ -177,7 +177,7 @@ jobs:
         if: |
           contains(github.event.comment.html_url, '/pull/') && 
           contains(github.event.comment.body, '/hold') && 
-          contains(github.event.comment.body, '/hold cancel') &&
+          !contains(github.event.comment.body, '/hold cancel') &&
           contains(steps.owners.outputs.reviewers, github.event.comment.user.login || 'null')
         uses: andymckay/labeler@master
         with:

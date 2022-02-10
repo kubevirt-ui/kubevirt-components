@@ -21,20 +21,20 @@ jobs:
             contains(steps.owners.outputs.approvers, github.event.comment.user.login || 'null') ||
             contains(steps.owners.outputs.reviewers, github.event.comment.user.login || 'null')
           )
-        uses: peter-evans/commit-comment@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.KUBE_BOT_PAT }}
+        uses: marocchino/sticky-pull-request-comment@v2
         with:
-          body: |
+          GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
+          header: 'welcome-no-owner'
+          message: |
             Hi, welcome to kubevirt ui, thank you this pull request 💖✨
 
       - name: Add welcome comment - owner
         if: |
           contains(steps.owners.outputs.approvers, github.event.comment.user.login || 'null') ||
           contains(steps.owners.outputs.reviewers, github.event.comment.user.login || 'null')
-        uses: peter-evans/commit-comment@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.KUBE_BOT_PAT }}
+        uses: marocchino/sticky-pull-request-comment@v2
         with:
-          body: |
+          GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
+          header: 'welcome-owner'
+          message: |
             ${{ github.event.comment.user.login }} hi, great to see you.
