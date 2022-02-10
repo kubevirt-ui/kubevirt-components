@@ -6,7 +6,7 @@ const config: Config.InitialOptions = {
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/dist/', '<rootDir>/bridge/'],
   transformIgnorePatterns: ['<rootDir>/node_modules/(?!(@patternfly|@openshift-console\\S*?)/.*)'],
   moduleNameMapper: {
-    '\\.(css|less)$': '<rootDir>/__mocks__/dummy.ts',
+    '\\.(css|less|svg)$': '<rootDir>/__mocks__/dummy.ts',
   },
   modulePathIgnorePatterns: ['<rootDir>/dist'],
 };
