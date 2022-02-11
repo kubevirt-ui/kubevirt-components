@@ -14,6 +14,14 @@ jobs:
       - name: Parse OWNERS
         id: owners
         uses: upalatucci/get-owners-action@v1
+        with:
+          n-random-reviewers: 2
+
+      - name: Add Pull Request Reviewer
+        uses: AveryCameronUofR/add-reviewer-gh-action@1.0.3
+        with: 
+          reviewers: ${{steps.owners.outputs.random-reviewers}}
+          token: ${{ secrets.BOT_PAT }}
 
       - name: Add welcome comment - none owner
         if: |
