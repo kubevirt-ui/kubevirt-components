@@ -55,6 +55,7 @@ module.exports = {
     TypeRenderer: path.join(__dirname, 'styleguide/components/Type'),
   },
   template: {
-    favicon: './styleguide/favicon-32x32.png',
+    favicon: './favicon-32x32.png',
   },
+  assetsDir: path.join(__dirname, 'styleguide/assets'),
 };
