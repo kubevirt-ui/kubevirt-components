@@ -4,10 +4,42 @@ Spinning icon
   <StatusIcon status='Running' spin />
 ```
 
+Showcase in a list of virtual machines
+
+```js
+import { TableComposable, Caption, Thead, Tr, Th, Tbody, Td } from '@patternfly/react-table';
+
+<TableComposable>
+  <Caption>Virtual Machines list</Caption>
+  <Thead>
+    <Tr>
+      <Th>Name</Th>
+      <Th>State</Th>
+    </Tr>
+  </Thead>
+  <Tbody>
+    <Tr>
+      <Td>Debian virtual machine</Td>
+      <Td><StatusIcon status='Paused' /> Paused</Td>
+    </Tr>
+    
+    <Tr>
+      <Td>RHEL virtual machine</Td>
+      <Td><StatusIcon status='Starting' spin /> Starting</Td>
+    </Tr>
+    <Tr>
+      <Td>CentOS virtual machine</Td>
+      <Td><StatusIcon status='ErrImagePull' /> Error</Td>
+    </Tr>
+  </Tbody>
+</TableComposable>
+```
 
 All possible statuses
 
 ```js
+import { TableComposable, Caption, Thead, Tr, Th, Tbody, Td } from '@patternfly/react-table';
+
 const possibleStatuses = {
   Stopped: 'Stopped',
   Migrating: 'Migrating',
@@ -29,20 +61,22 @@ const possibleStatuses = {
   Unknown: 'Unknown',
 };
 
-<table className='pf-c-table pf-m-grid-md'>
-<thead>
-  <tr>
-    <th width='250px'>Printable Status</th>
-    <th>Icon</th>
-  </tr>
-  </thead>
+<TableComposable>
+  <Thead>
+    <Tr>
+      <Th>Printable Status</Th>
+      <Th>Icon</Th>
+    </Tr>
+  </Thead>
+  <Tbody>
   {Object.values(possibleStatuses).map(status => (
-    <tr key={status}>
-      <td>{status}</td>
-      <td><StatusIcon status={status} /></td>
-    </tr>
+    <Tr key={status}>
+      <Td>{status}</Td>
+      <Td><StatusIcon status={status} /></Td>
+    </Tr>
   ))}
-</table>
+  </Tbody>
+</TableComposable>
 
 
 ```
