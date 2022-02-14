@@ -2,13 +2,13 @@ import * as React from 'react';
 
 import { cleanup, render, screen } from '@testing-library/react';
 
-import { IconStatus, statuses, statusToLabel } from './IconStatus';
+import { statuses, StatusIcon, statusToLabel } from './StatusIcon';
 
 afterEach(cleanup);
 
-describe('Render IconStatus', () => {
+describe('Render StatusIcon', () => {
   it('unknown condition', () => {
-    const { asFragment } = render(<IconStatus status="unknown status" />);
+    const { asFragment } = render(<StatusIcon status="unknown status" />);
     expect(asFragment()).toMatchSnapshot();
 
     const title = statusToLabel[statuses.Unknown];
@@ -17,7 +17,7 @@ describe('Render IconStatus', () => {
 
   Object.values(statuses).forEach((status) => {
     return it(`${status}`, () => {
-      const { asFragment } = render(<IconStatus status={status} />);
+      const { asFragment } = render(<StatusIcon status={status} />);
       expect(asFragment()).toMatchSnapshot();
 
       const title = statusToLabel[status];
@@ -28,10 +28,15 @@ describe('Render IconStatus', () => {
   it('data-test atrtibute added', () => {
     const dataTest = 'test-id';
     const { asFragment } = render(
-      <IconStatus status={statuses.Starting} data-test-id={dataTest} />,
+      <StatusIcon status={statuses.Starting} data-test-id={dataTest} />,
     );
     expect(asFragment()).toMatchSnapshot();
 
     screen.getByTestId(dataTest);
+  });
+
+  it('spinning icon', () => {
+    const { asFragment } = render(<StatusIcon status={statuses.Running} spin />);
+    expect(asFragment()).toMatchSnapshot();
   });
 });

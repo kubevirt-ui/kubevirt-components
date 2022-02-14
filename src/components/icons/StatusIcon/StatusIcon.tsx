@@ -1,4 +1,5 @@
 import * as React from 'react';
+import classNames from 'classnames';
 
 import {
   ExclamationCircleIcon,
@@ -15,27 +16,20 @@ import { faSpin } from './utils';
 type IconProps = {
   title: string;
   'data-test-id'?: string;
+  className?: string;
 };
 
 const RedExclamationCircleIcon: React.FC<IconProps> = ({
   title,
   'data-test-id': dataTestId,
+  className,
 }): React.ReactElement => (
-  <ExclamationCircleIcon color={dangerColor.value} title={title} data-test-id={dataTestId} />
-);
-
-const SpinningInProgressIcon: React.FC<IconProps> = ({
-  title,
-  'data-test-id': dataTestId,
-}): React.ReactElement => (
-  <InProgressIcon title={title} className={faSpin} data-test-id={dataTestId} />
-);
-
-const SpinningSyncAltIcon: React.FC<IconProps> = ({
-  title,
-  'data-test-id': dataTestId,
-}): React.ReactElement => (
-  <SyncAltIcon title={title} className={faSpin} data-test-id={dataTestId} />
+  <ExclamationCircleIcon
+    color={dangerColor.value}
+    title={title}
+    data-test-id={dataTestId}
+    className={className}
+  />
 );
 
 export enum statuses {
@@ -71,14 +65,14 @@ const statusToIconHandler = {
 export const statusToIcon = new Proxy(
   {
     [statuses.Stopped]: OffIcon,
-    [statuses.Migrating]: SpinningInProgressIcon,
-    [statuses.Provisioning]: SpinningInProgressIcon,
-    [statuses.Starting]: SpinningInProgressIcon,
-    [statuses.Running]: SpinningSyncAltIcon,
+    [statuses.Migrating]: InProgressIcon,
+    [statuses.Provisioning]: InProgressIcon,
+    [statuses.Starting]: InProgressIcon,
+    [statuses.Running]: SyncAltIcon,
     [statuses.Paused]: PausedIcon,
-    [statuses.Stopping]: SpinningInProgressIcon,
-    [statuses.Terminating]: SpinningInProgressIcon,
-    [statuses.WaitingForVolumeBinding]: SpinningInProgressIcon,
+    [statuses.Stopping]: InProgressIcon,
+    [statuses.Terminating]: InProgressIcon,
+    [statuses.WaitingForVolumeBinding]: InProgressIcon,
     [statuses.ErrImagePull]: RedExclamationCircleIcon,
     [statuses.CrashLoopBackOff]: RedExclamationCircleIcon,
     [statuses.FailedUnschedulable]: RedExclamationCircleIcon,
@@ -126,7 +120,7 @@ export const statusToLabel = new Proxy(
   statusLabelHandler,
 );
 
-export type IconStatusProps = {
+export type StatusIconProps = {
   /** String representing the status property.
    * Supported statuses now:
    * - Stopped
@@ -149,17 +143,25 @@ export type IconStatusProps = {
    * - WaitingForVolumeBinding
    * */
   status: string;
-  /* For tests purpose */
+  /**
+   * Data attribute for end-to-end testing
+   */
   'data-test-id'?: string;
+  /**
+   *
+   * To have a rotating icon, set this prop to true.
+   * @default false
+   */
+  spin?: boolean;
 };
 
-export const IconStatus: React.FC<IconStatusProps> = React.memo(
-  ({ status, 'data-test-id': dataTestId }) => {
+export const StatusIcon: React.FC<StatusIconProps> = React.memo(
+  ({ status, 'data-test-id': dataTestId, spin = false }) => {
     const Icon = statusToIcon[status as statuses];
     const title = statusToLabel[status];
 
-    return <Icon title={title} data-test-id={dataTestId} />;
+    return <Icon title={title} data-test-id={dataTestId} className={classNames(spin && faSpin)} />;
   },
 );
 
-IconStatus.displayName = 'IconStatus';
+StatusIcon.displayName = 'StatusIcon';

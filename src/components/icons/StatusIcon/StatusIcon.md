@@ -1,4 +1,11 @@
-Examples
+
+
+Spinning Icon
+```js
+  <StatusIcon status='Running' spin />
+```
+
+All icons for supported statuses
 
 ```js
 const possibleStatuses = {
@@ -32,7 +39,7 @@ const possibleStatuses = {
   {Object.values(possibleStatuses).map(status => (
     <tr key={status}>
       <td>{status}</td>
-      <td><IconStatus status={status} /></td>
+      <td><StatusIcon status={status} /></td>
     </tr>
   ))}
 </table>
