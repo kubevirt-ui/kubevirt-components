@@ -52,18 +52,44 @@ export type OSIconProps = {
    *
    * */
   iconClass: OSIconsEnum;
+  /**
+   * The alt attribute holds a text description of the image,
+   * which isn't mandatory but is incredibly useful for accessibility —
+   * screen readers read this description out to their users so they know what the image means.
+   */
   alt?: string;
+  /**
+   * Additional classes added to the image.
+   */
   className?: string;
+  /**
+   * The intrinsic width of the image. Could be a string or a number of pixels.
+   */
   width?: string | number;
+  /**
+   * The intrinsic height of the image. Could be a string or a number of pixels.
+   */
   height?: string | number;
-  /* 	Defines a string value that labels the current element. */
+  /**
+   * Defines a string value that labels the current element.
+   */
   'aria-label'?: string;
+  /**
+   * Data attribute for end-to-end testing
+   */
   'data-test-id'?: string;
 };
 
 /**
- * This component return an image of the operating system.
- * The iconClass defined into the metadata annotation is used to decide which icon use
+ * OSIcon component return an image of the operating system.
+ * The iconClass defined into the metadata annotation is used to decide which icon use.
+ *
+ * The OSIconsEnum is exported with the OSIcon and it represent all the possible icons available with this component.
+ * The iconClass is available commonly in the *metadata.annotations* field.
+ *
+ * OSIcon use a standard HTML img tag to render the right os image for you.
+ *
+ * AS you can see there are available other image-link props to ensure that custom styles and classes can be defined.
  * */
 export const OSIcon = ({
   iconClass,
