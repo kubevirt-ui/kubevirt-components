@@ -10,8 +10,8 @@ const program = new Command();
 program
   .addOption(new Option('-p, --port <number>', 'proxy server port number').default(9090).env('BRIDGE_PORT'))
   .addOption(new Option('-u, --host <host>', 'proxy server host name').default('0.0.0.0').env('BRIDGE_HOST'))
-  .addOption(new Option('-s, --staticFiles <dir>', 'the root directory from which to serve static assets').default('./docs-build'))
   .addOption(new Option('-e, --clusterEndpoint <endpoint>', 'url for k8s api').makeOptionMandatory(true).env('BRIDGE_CLUSTER_ENDPOINT'))
+  .addOption(new Option('-s, --styleguideEndpoint <endpoint>', 'url for styleguide development server').makeOptionMandatory(true).env('BRIDGE_STYLEGUIDE_ENDPOINT'))
   .addOption(new Option('-t, --clusterThanos <thanos>', 'url for thanos/prometheus api').makeOptionMandatory(true).env('BRIDGE_CLUSTER_THANOS'))
   .addOption(new Option('-a, --authBearerToken <auth>', 'auth token for k8s api').makeOptionMandatory(true).env('BRIDGE_AUTH_BEARER_TOKEN'))
 
@@ -54,8 +54,11 @@ app.use('/api/prometheus', createProxyMiddleware({
     },
 }));
 
-// Serve static files
-app.use(express.static(options.staticFiles));
+app.use('/', createProxyMiddleware({
+    target: options.styleguideEndpoint,
+    secure: false,
+    changeOrigin: true,
+}));
 
 // Start the Proxy
 app.listen(options.port, options.host, () => {
