@@ -6,16 +6,29 @@
 
 ![alt gopher network](https://raw.githubusercontent.com/kubevirt-ui/kubevirt-components/main/images/logos.png)
 
-React Component Library for Kubevirt UI
-
-## Documentation
-
-Auto generated docs for [KubeVirt UI Components](https://kubevirt-ui.github.io/kubevirt-components/)
+React Component Library for Kubevirt UI ([API reference](https://kubevirt-ui.github.io/kubevirt-components/))
 
 ## Add to your project
 
 ```bash
-yarn add @kubevirt-ui/components
+yarn add -D @kubevirt-ui/components
+```
+
+## Development
+
+Run develpment server (http://localhost:6060):
+```bash
+yarn styleguide 
+```
+
+Run develpment server with cluster proxy (http://localhost:9090):
+```bash
+yarn styleguide:proxy 
+```
+
+Build the static documentation:
+```bash
+yarn styleguide:build 
 ```
 
 ## Scope
