@@ -1,6 +1,6 @@
 import * as React from 'react';
+import classNames from 'classnames';
 
-import { V1VirtualMachineStatus } from '@kubevirt-ui/kubevirt-api/kubevirt';
 import {
   ExclamationCircleIcon,
   InProgressIcon,
@@ -11,23 +11,28 @@ import {
 } from '@patternfly/react-icons';
 import { global_danger_color_100 as dangerColor } from '@patternfly/react-tokens/dist/js/global_danger_color_100';
 
-interface IconProps {
+import { faSpin } from './utils';
+
+type IconProps = {
   title: string;
-}
+  'data-test-id'?: string;
+  className?: string;
+};
 
-function RedExclamationCircleIcon({ title }: IconProps): React.ReactElement {
-  return <ExclamationCircleIcon color={dangerColor.value} title={title} />;
-}
+const RedExclamationCircleIcon: React.FC<IconProps> = ({
+  title,
+  'data-test-id': dataTestId,
+  className,
+}): React.ReactElement => (
+  <ExclamationCircleIcon
+    color={dangerColor.value}
+    title={title}
+    data-test-id={dataTestId}
+    className={className}
+  />
+);
 
-function SpinningInProgressIcon({ title }: IconProps): React.ReactElement {
-  return <InProgressIcon title={title} className="fa-spin" />;
-}
-
-function SpinningSyncAltIcon({ title }: IconProps): React.ReactElement {
-  return <SyncAltIcon title={title} className="fa-spin" />;
-}
-
-export enum statusLabel {
+export enum statuses {
   Stopped = 'Stopped',
   Migrating = 'Migrating',
   Provisioning = 'Provisioning',
@@ -37,82 +42,86 @@ export enum statusLabel {
   Stopping = 'Stopping',
   Terminating = 'Terminating',
   Unknown = 'Unknown',
+  CrashLoopBackOff = 'CrashLoopBackOff',
+  FailedUnschedulable = 'FailedUnschedulable',
+  ErrorUnschedulable = 'ErrorUnschedulable',
+  ErrImagePull = 'ErrImagePull',
+  ImagePullBackOff = 'ImagePullBackOff',
+  ErrorPvcNotFound = 'ErrorPvcNotFound',
+  ErrorDataVolumeNotFound = 'ErrorDataVolumeNotFound',
+  DataVolumeError = 'DataVolumeError',
+  WaitingForVolumeBinding = 'WaitingForVolumeBinding',
+}
+
+const statusToIconHandler = {
+  get: (mapper: Record<statuses, React.ComponentClass | React.FC<IconProps>>, status: statuses) => {
+    const statusIcon = mapper[status];
+    if (statusIcon) return statusIcon;
+
+    return UnknownIcon;
+  },
+};
+
+export const statusToIcon = new Proxy(
+  {
+    [statuses.Stopped]: OffIcon,
+    [statuses.Migrating]: InProgressIcon,
+    [statuses.Provisioning]: InProgressIcon,
+    [statuses.Starting]: InProgressIcon,
+    [statuses.Running]: SyncAltIcon,
+    [statuses.Paused]: PausedIcon,
+    [statuses.Stopping]: InProgressIcon,
+    [statuses.Terminating]: InProgressIcon,
+    [statuses.WaitingForVolumeBinding]: InProgressIcon,
+    [statuses.ErrImagePull]: RedExclamationCircleIcon,
+    [statuses.CrashLoopBackOff]: RedExclamationCircleIcon,
+    [statuses.FailedUnschedulable]: RedExclamationCircleIcon,
+    [statuses.ErrorUnschedulable]: RedExclamationCircleIcon,
+    [statuses.ImagePullBackOff]: RedExclamationCircleIcon,
+    [statuses.ErrorPvcNotFound]: RedExclamationCircleIcon,
+    [statuses.ErrorDataVolumeNotFound]: RedExclamationCircleIcon,
+    [statuses.DataVolumeError]: RedExclamationCircleIcon,
+    [statuses.Unknown]: UnknownIcon,
+  },
+  statusToIconHandler,
+);
+
+export enum customStatusLabels {
+  Starting = 'Starting',
   Error = 'Error',
-  Completed = 'Completed',
-  Pending = 'Pending',
-  Importing = 'Importing',
-  InProgress = 'InProgress',
   Other = 'Other',
   Deleting = 'Deleting',
 }
 
-export const statuses = {
-  Stopped: 'Stopped',
-  Migrating: 'Migrating',
-  Provisioning: 'Provisioning',
-  Starting: 'Starting',
-  Running: 'Running',
-  Paused: 'Paused',
-  Stopping: 'Stopping',
-  Terminating: 'Terminating',
-  Unknown: 'Unknown',
-  CrashLoopBackOff: 'CrashLoopBackOff',
-  FailedUnschedulable: 'FailedUnschedulable',
-  ErrorUnschedulable: 'ErrorUnschedulable',
-  ErrImagePull: 'ErrImagePull',
-  ImagePullBackOff: 'ImagePullBackOff',
-  ErrorPvcNotFound: 'ErrorPvcNotFound',
-  ErrorDataVolumeNotFound: 'ErrorDataVolumeNotFound',
-  DataVolumeError: 'DataVolumeError',
-  WaitingForVolumeBinding: 'WaitingForVolumeBinding',
+const statusLabelHandler = {
+  get: (mapper: Record<string, string>, status: string) => {
+    const statusLabel = mapper[status];
+    if (statusLabel) return statusLabel;
+
+    return customStatusLabels.Other;
+  },
 };
 
-const printableToIcon = {
-  [statuses.Stopped]: OffIcon,
-  [statuses.Migrating]: SpinningInProgressIcon,
-  [statuses.Provisioning]: SpinningInProgressIcon,
-  [statuses.Starting]: SpinningInProgressIcon,
-  [statuses.Running]: SpinningSyncAltIcon,
-  [statuses.Paused]: PausedIcon,
-  [statuses.Stopping]: SpinningInProgressIcon,
-  [statuses.Terminating]: SpinningInProgressIcon,
-  [statuses.WaitingForVolumeBinding]: SpinningInProgressIcon,
-  [statuses.ErrImagePull]: RedExclamationCircleIcon,
-  [statuses.CrashLoopBackOff]: RedExclamationCircleIcon,
-  [statuses.FailedUnschedulable]: RedExclamationCircleIcon,
-  [statuses.ErrorUnschedulable]: RedExclamationCircleIcon,
-  [statuses.ImagePullBackOff]: RedExclamationCircleIcon,
-  [statuses.ErrorPvcNotFound]: RedExclamationCircleIcon,
-  [statuses.ErrorDataVolumeNotFound]: RedExclamationCircleIcon,
-  [statuses.DataVolumeError]: RedExclamationCircleIcon,
-  [statuses.Unknown]: UnknownIcon,
-};
+export const statusToLabel = new Proxy(
+  {
+    [statuses.Terminating]: customStatusLabels.Deleting,
+    [statuses.Provisioning]: customStatusLabels.Starting,
+    [statuses.WaitingForVolumeBinding]: customStatusLabels.Starting,
+    [statuses.ErrImagePull]: customStatusLabels.Error,
+    [statuses.CrashLoopBackOff]: customStatusLabels.Error,
+    [statuses.FailedUnschedulable]: customStatusLabels.Error,
+    [statuses.ErrorUnschedulable]: customStatusLabels.Error,
+    [statuses.ImagePullBackOff]: customStatusLabels.Error,
+    [statuses.ErrorPvcNotFound]: customStatusLabels.Error,
+    [statuses.ErrorDataVolumeNotFound]: customStatusLabels.Error,
+    [statuses.DataVolumeError]: customStatusLabels.Error,
+    [statuses.Unknown]: customStatusLabels.Other,
+  },
+  statusLabelHandler,
+);
 
-export const statusToLabel = {
-  [statuses.Stopped]: statusLabel.Stopped,
-  [statuses.Migrating]: statusLabel.Migrating,
-  [statuses.Provisioning]: statusLabel.Starting,
-  [statuses.Starting]: statusLabel.Starting,
-  [statuses.Running]: statusLabel.Running,
-  [statuses.Paused]: statusLabel.Paused,
-  [statuses.Stopping]: statusLabel.Stopping,
-  [statuses.Terminating]: statusLabel.Terminating,
-  [statuses.WaitingForVolumeBinding]: statusLabel.Starting,
-  [statuses.ErrImagePull]: statusLabel.Error,
-  [statuses.CrashLoopBackOff]: statusLabel.Error,
-  [statuses.FailedUnschedulable]: statusLabel.Error,
-  [statuses.ErrorUnschedulable]: statusLabel.Error,
-  [statuses.ImagePullBackOff]: statusLabel.Error,
-  [statuses.ErrorPvcNotFound]: statusLabel.Error,
-  [statuses.ErrorDataVolumeNotFound]: statusLabel.Error,
-  [statuses.DataVolumeError]: statusLabel.Error,
-  [statuses.Unknown]: statusLabel.Other,
-};
-
-export interface StatusIconProps {
-  /** String representing the
-   * [V1VirtualMachineStatus](https://github.com/kubevirt-ui/kubevirt-api/blob/e7083a1ad59ae1fa0df83e940687186049ec3c63/kubevirt/models/V1VirtualMachineStatus.ts#L57)
-   * printableStatus property.
+export type StatusIconProps = {
+  /** String representing the status property.
    * Supported statuses now:
    * - Stopped
    * - Migrating
@@ -133,12 +142,29 @@ export interface StatusIconProps {
    * - DataVolumeError
    * - WaitingForVolumeBinding
    * */
-  vmPrintableStatus: V1VirtualMachineStatus['printableStatus'];
-}
+  status: string;
+  /**
+   * Data attribute for end-to-end testing
+   */
+  'data-test-id'?: string;
+  /**
+   *
+   * To have a rotating icon, set this prop to true.
+   * @default false
+   */
+  spin?: boolean;
+};
 
-export function StatusIcon({ vmPrintableStatus }: StatusIconProps) {
-  const Icon = printableToIcon[vmPrintableStatus || statuses.Unknown];
-  const title = statusToLabel[vmPrintableStatus || statuses.Unknown];
+/**
+ * StatusIcon renders status icons for k8s elements to visualize [resource lifecycle phases](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase)
+ */
+export const StatusIcon: React.FC<StatusIconProps> = React.memo(
+  ({ status, 'data-test-id': dataTestId, spin = false }) => {
+    const Icon = statusToIcon[status as statuses];
+    const title = statusToLabel[status];
 
-  return <Icon title={title} />;
-}
+    return <Icon title={title} data-test-id={dataTestId} className={classNames(spin && faSpin)} />;
+  },
+);
+
+StatusIcon.displayName = 'StatusIcon';

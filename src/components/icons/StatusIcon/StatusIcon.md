@@ -1,7 +1,14 @@
-Examples
+
+Spinning icon
+```js
+  <StatusIcon status='Running' spin />
+```
+
+
+All possible statuses
 
 ```js
-const printableVmStatus = {
+const possibleStatuses = {
   Stopped: 'Stopped',
   Migrating: 'Migrating',
   Provisioning: 'Provisioning',
@@ -29,10 +36,10 @@ const printableVmStatus = {
     <th>Icon</th>
   </tr>
   </thead>
-  {Object.values(printableVmStatus).map(status => (
-    <tr>
+  {Object.values(possibleStatuses).map(status => (
+    <tr key={status}>
       <td>{status}</td>
-      <td><StatusIcon vmPrintableStatus={status} /></td>
+      <td><StatusIcon status={status} /></td>
     </tr>
   ))}
 </table>
