@@ -13,7 +13,7 @@ jobs:
 
       - name: Parse OWNERS
         id: owners
-        uses: upalatucci/get-owners-action@v2.1
+        uses: upalatucci/get-owners-action@v2.2
         with:
           auto-add-reviewers: true
           n-random-reviewers: 2
