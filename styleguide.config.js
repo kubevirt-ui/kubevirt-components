@@ -14,6 +14,10 @@ module.exports = {
   ],
   sections: [
     {
+      name: 'Introduction',
+      content: 'README.md',
+    },
+    {
       name: 'Icons',
       components: 'src/components/icons/**/*.tsx',
       content: 'src/components/icons/README.md',
