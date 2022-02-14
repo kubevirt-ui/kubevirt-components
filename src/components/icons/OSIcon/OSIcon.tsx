@@ -10,6 +10,9 @@ import rhel from './svg/rhel.svg';
 import ubuntu from './svg/ubuntu.svg';
 import windows from './svg/windows.svg';
 
+/**
+ * List of the OSs OSIcon can render.
+ */
 export enum OSIconsEnum {
   LINUX = 'icon-linux',
   CENTOS = 'icon-centos',
@@ -81,15 +84,12 @@ export type OSIconProps = {
 };
 
 /**
- * OSIcon component return an image of the operating system.
+ * OSIcon component return an image of an operating system.
  * The iconClass defined into the metadata annotation is used to decide which icon use.
  *
- * The OSIconsEnum is exported with the OSIcon and it represent all the possible icons available with this component.
- * The iconClass is available commonly in the *metadata.annotations* field.
+ * The OSIconsEnum is exported with the OSIcon and it represent the possible icons available with this component.
  *
  * OSIcon use a standard HTML img tag to render the right os image for you.
- *
- * AS you can see there are available other image-link props to ensure that custom styles and classes can be defined.
  * */
 export const OSIcon = ({
   iconClass,

@@ -12,25 +12,30 @@ module.exports = {
     '**/*.d.ts',
     'src/components/index.ts',
   ],
+  pagePerSection: true,
   sections: [
     {
       name: 'Introduction',
       content: 'README.md',
+      sectionDepth: 1,
     },
     {
       name: 'Icons',
       components: 'src/components/icons/**/*.tsx',
       content: 'src/components/icons/README.md',
+      sectionDepth: 1,
     },
     {
       name: 'Status',
       components: 'src/components/status/**/*.tsx',
       content: 'src/components/status/README.md',
+      sectionDepth: 1,
     },
     {
       name: 'Shims',
       components: 'src/components/shims/**/*.tsx',
       content: 'src/components/shims/README.md',
+      sectionDepth: 1,
     },
   ],
   require: [
