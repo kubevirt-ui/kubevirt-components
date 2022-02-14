@@ -27,7 +27,7 @@ function SpinningSyncAltIcon({ title }: IconProps): React.ReactElement {
   return <SyncAltIcon title={title} className="fa-spin" />;
 }
 
-export enum VMStatusLabel {
+export enum statusLabel {
   Stopped = 'Stopped',
   Migrating = 'Migrating',
   Provisioning = 'Provisioning',
@@ -46,7 +46,7 @@ export enum VMStatusLabel {
   Deleting = 'Deleting',
 }
 
-export const printableVmStatus = {
+export const statuses = {
   Stopped: 'Stopped',
   Migrating: 'Migrating',
   Provisioning: 'Provisioning',
@@ -68,48 +68,48 @@ export const printableVmStatus = {
 };
 
 const printableToIcon = {
-  [printableVmStatus.Stopped]: OffIcon,
-  [printableVmStatus.Migrating]: SpinningInProgressIcon,
-  [printableVmStatus.Provisioning]: SpinningInProgressIcon,
-  [printableVmStatus.Starting]: SpinningInProgressIcon,
-  [printableVmStatus.Running]: SpinningSyncAltIcon,
-  [printableVmStatus.Paused]: PausedIcon,
-  [printableVmStatus.Stopping]: SpinningInProgressIcon,
-  [printableVmStatus.Terminating]: SpinningInProgressIcon,
-  [printableVmStatus.WaitingForVolumeBinding]: SpinningInProgressIcon,
-  [printableVmStatus.ErrImagePull]: RedExclamationCircleIcon,
-  [printableVmStatus.CrashLoopBackOff]: RedExclamationCircleIcon,
-  [printableVmStatus.FailedUnschedulable]: RedExclamationCircleIcon,
-  [printableVmStatus.ErrorUnschedulable]: RedExclamationCircleIcon,
-  [printableVmStatus.ImagePullBackOff]: RedExclamationCircleIcon,
-  [printableVmStatus.ErrorPvcNotFound]: RedExclamationCircleIcon,
-  [printableVmStatus.ErrorDataVolumeNotFound]: RedExclamationCircleIcon,
-  [printableVmStatus.DataVolumeError]: RedExclamationCircleIcon,
-  [printableVmStatus.Unknown]: UnknownIcon,
+  [statuses.Stopped]: OffIcon,
+  [statuses.Migrating]: SpinningInProgressIcon,
+  [statuses.Provisioning]: SpinningInProgressIcon,
+  [statuses.Starting]: SpinningInProgressIcon,
+  [statuses.Running]: SpinningSyncAltIcon,
+  [statuses.Paused]: PausedIcon,
+  [statuses.Stopping]: SpinningInProgressIcon,
+  [statuses.Terminating]: SpinningInProgressIcon,
+  [statuses.WaitingForVolumeBinding]: SpinningInProgressIcon,
+  [statuses.ErrImagePull]: RedExclamationCircleIcon,
+  [statuses.CrashLoopBackOff]: RedExclamationCircleIcon,
+  [statuses.FailedUnschedulable]: RedExclamationCircleIcon,
+  [statuses.ErrorUnschedulable]: RedExclamationCircleIcon,
+  [statuses.ImagePullBackOff]: RedExclamationCircleIcon,
+  [statuses.ErrorPvcNotFound]: RedExclamationCircleIcon,
+  [statuses.ErrorDataVolumeNotFound]: RedExclamationCircleIcon,
+  [statuses.DataVolumeError]: RedExclamationCircleIcon,
+  [statuses.Unknown]: UnknownIcon,
 };
 
-export const printableStatusToLabel = {
-  [printableVmStatus.Stopped]: VMStatusLabel.Stopped,
-  [printableVmStatus.Migrating]: VMStatusLabel.Migrating,
-  [printableVmStatus.Provisioning]: VMStatusLabel.Starting,
-  [printableVmStatus.Starting]: VMStatusLabel.Starting,
-  [printableVmStatus.Running]: VMStatusLabel.Running,
-  [printableVmStatus.Paused]: VMStatusLabel.Paused,
-  [printableVmStatus.Stopping]: VMStatusLabel.Stopping,
-  [printableVmStatus.Terminating]: VMStatusLabel.Terminating,
-  [printableVmStatus.WaitingForVolumeBinding]: VMStatusLabel.Starting,
-  [printableVmStatus.ErrImagePull]: VMStatusLabel.Error,
-  [printableVmStatus.CrashLoopBackOff]: VMStatusLabel.Error,
-  [printableVmStatus.FailedUnschedulable]: VMStatusLabel.Error,
-  [printableVmStatus.ErrorUnschedulable]: VMStatusLabel.Error,
-  [printableVmStatus.ImagePullBackOff]: VMStatusLabel.Error,
-  [printableVmStatus.ErrorPvcNotFound]: VMStatusLabel.Error,
-  [printableVmStatus.ErrorDataVolumeNotFound]: VMStatusLabel.Error,
-  [printableVmStatus.DataVolumeError]: VMStatusLabel.Error,
-  [printableVmStatus.Unknown]: VMStatusLabel.Other,
+export const statusToLabel = {
+  [statuses.Stopped]: statusLabel.Stopped,
+  [statuses.Migrating]: statusLabel.Migrating,
+  [statuses.Provisioning]: statusLabel.Starting,
+  [statuses.Starting]: statusLabel.Starting,
+  [statuses.Running]: statusLabel.Running,
+  [statuses.Paused]: statusLabel.Paused,
+  [statuses.Stopping]: statusLabel.Stopping,
+  [statuses.Terminating]: statusLabel.Terminating,
+  [statuses.WaitingForVolumeBinding]: statusLabel.Starting,
+  [statuses.ErrImagePull]: statusLabel.Error,
+  [statuses.CrashLoopBackOff]: statusLabel.Error,
+  [statuses.FailedUnschedulable]: statusLabel.Error,
+  [statuses.ErrorUnschedulable]: statusLabel.Error,
+  [statuses.ImagePullBackOff]: statusLabel.Error,
+  [statuses.ErrorPvcNotFound]: statusLabel.Error,
+  [statuses.ErrorDataVolumeNotFound]: statusLabel.Error,
+  [statuses.DataVolumeError]: statusLabel.Error,
+  [statuses.Unknown]: statusLabel.Other,
 };
 
-export interface VMIconStatusProps {
+export interface StatusIconProps {
   /** String representing the
    * [V1VirtualMachineStatus](https://github.com/kubevirt-ui/kubevirt-api/blob/e7083a1ad59ae1fa0df83e940687186049ec3c63/kubevirt/models/V1VirtualMachineStatus.ts#L57)
    * printableStatus property.
@@ -136,9 +136,9 @@ export interface VMIconStatusProps {
   vmPrintableStatus: V1VirtualMachineStatus['printableStatus'];
 }
 
-export function VMIconStatus({ vmPrintableStatus }: VMIconStatusProps) {
-  const Icon = printableToIcon[vmPrintableStatus || printableVmStatus.Unknown];
-  const title = printableStatusToLabel[vmPrintableStatus || printableVmStatus.Unknown];
+export function StatusIcon({ vmPrintableStatus }: StatusIconProps) {
+  const Icon = printableToIcon[vmPrintableStatus || statuses.Unknown];
+  const title = statusToLabel[vmPrintableStatus || statuses.Unknown];
 
   return <Icon title={title} />;
 }

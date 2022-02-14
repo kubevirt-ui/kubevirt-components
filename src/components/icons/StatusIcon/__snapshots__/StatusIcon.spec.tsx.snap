@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render VMIconStatus CrashLoopBackOff 1`] = `
+exports[`Render StatusIcon CrashLoopBackOff 1`] = `
 <DocumentFragment>
   <svg
     aria-labelledby="icon-title-10"
@@ -23,7 +23,7 @@ exports[`Render VMIconStatus CrashLoopBackOff 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Render VMIconStatus DataVolumeError 1`] = `
+exports[`Render StatusIcon DataVolumeError 1`] = `
 <DocumentFragment>
   <svg
     aria-labelledby="icon-title-17"
@@ -46,7 +46,7 @@ exports[`Render VMIconStatus DataVolumeError 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Render VMIconStatus ErrImagePull 1`] = `
+exports[`Render StatusIcon ErrImagePull 1`] = `
 <DocumentFragment>
   <svg
     aria-labelledby="icon-title-13"
@@ -69,7 +69,7 @@ exports[`Render VMIconStatus ErrImagePull 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Render VMIconStatus ErrorDataVolumeNotFound 1`] = `
+exports[`Render StatusIcon ErrorDataVolumeNotFound 1`] = `
 <DocumentFragment>
   <svg
     aria-labelledby="icon-title-16"
@@ -92,7 +92,7 @@ exports[`Render VMIconStatus ErrorDataVolumeNotFound 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Render VMIconStatus ErrorPvcNotFound 1`] = `
+exports[`Render StatusIcon ErrorPvcNotFound 1`] = `
 <DocumentFragment>
   <svg
     aria-labelledby="icon-title-15"
@@ -115,7 +115,7 @@ exports[`Render VMIconStatus ErrorPvcNotFound 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Render VMIconStatus ErrorUnschedulable 1`] = `
+exports[`Render StatusIcon ErrorUnschedulable 1`] = `
 <DocumentFragment>
   <svg
     aria-labelledby="icon-title-12"
@@ -138,7 +138,7 @@ exports[`Render VMIconStatus ErrorUnschedulable 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Render VMIconStatus FailedUnschedulable 1`] = `
+exports[`Render StatusIcon FailedUnschedulable 1`] = `
 <DocumentFragment>
   <svg
     aria-labelledby="icon-title-11"
@@ -161,7 +161,7 @@ exports[`Render VMIconStatus FailedUnschedulable 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Render VMIconStatus ImagePullBackOff 1`] = `
+exports[`Render StatusIcon ImagePullBackOff 1`] = `
 <DocumentFragment>
   <svg
     aria-labelledby="icon-title-14"
@@ -184,7 +184,7 @@ exports[`Render VMIconStatus ImagePullBackOff 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Render VMIconStatus Migrating 1`] = `
+exports[`Render StatusIcon Migrating 1`] = `
 <DocumentFragment>
   <svg
     aria-labelledby="icon-title-2"
@@ -208,7 +208,7 @@ exports[`Render VMIconStatus Migrating 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Render VMIconStatus No status specified 1`] = `
+exports[`Render StatusIcon No status specified 1`] = `
 <DocumentFragment>
   <svg
     aria-labelledby="icon-title-0"
@@ -231,7 +231,7 @@ exports[`Render VMIconStatus No status specified 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Render VMIconStatus Paused 1`] = `
+exports[`Render StatusIcon Paused 1`] = `
 <DocumentFragment>
   <svg
     aria-labelledby="icon-title-6"
@@ -254,7 +254,7 @@ exports[`Render VMIconStatus Paused 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Render VMIconStatus Provisioning 1`] = `
+exports[`Render StatusIcon Provisioning 1`] = `
 <DocumentFragment>
   <svg
     aria-labelledby="icon-title-3"
@@ -278,7 +278,7 @@ exports[`Render VMIconStatus Provisioning 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Render VMIconStatus Running 1`] = `
+exports[`Render StatusIcon Running 1`] = `
 <DocumentFragment>
   <svg
     aria-labelledby="icon-title-5"
@@ -302,7 +302,7 @@ exports[`Render VMIconStatus Running 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Render VMIconStatus Starting 1`] = `
+exports[`Render StatusIcon Starting 1`] = `
 <DocumentFragment>
   <svg
     aria-labelledby="icon-title-4"
@@ -326,7 +326,7 @@ exports[`Render VMIconStatus Starting 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Render VMIconStatus Stopped 1`] = `
+exports[`Render StatusIcon Stopped 1`] = `
 <DocumentFragment>
   <svg
     aria-labelledby="icon-title-1"
@@ -349,7 +349,7 @@ exports[`Render VMIconStatus Stopped 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Render VMIconStatus Stopping 1`] = `
+exports[`Render StatusIcon Stopping 1`] = `
 <DocumentFragment>
   <svg
     aria-labelledby="icon-title-7"
@@ -373,7 +373,7 @@ exports[`Render VMIconStatus Stopping 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Render VMIconStatus Terminating 1`] = `
+exports[`Render StatusIcon Terminating 1`] = `
 <DocumentFragment>
   <svg
     aria-labelledby="icon-title-8"
@@ -397,7 +397,7 @@ exports[`Render VMIconStatus Terminating 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Render VMIconStatus Unknown 1`] = `
+exports[`Render StatusIcon Unknown 1`] = `
 <DocumentFragment>
   <svg
     aria-labelledby="icon-title-9"
@@ -420,7 +420,7 @@ exports[`Render VMIconStatus Unknown 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Render VMIconStatus WaitingForVolumeBinding 1`] = `
+exports[`Render StatusIcon WaitingForVolumeBinding 1`] = `
 <DocumentFragment>
   <svg
     aria-labelledby="icon-title-18"
