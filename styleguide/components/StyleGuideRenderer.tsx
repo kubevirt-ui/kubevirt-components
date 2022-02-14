@@ -107,6 +107,10 @@ const styles = ({ fontFamily, color, mq, sidebarWidth, space }: Theme) => ({
       cursor: 'pointer',
     },
   },
+  octocat: {
+    width: '16px',
+    marginLeft: '5px',
+  },
 });
 
 function NavBar({
@@ -121,21 +125,23 @@ function NavBar({
         </a>
         <nav className={classes.nav}>
           <a className={classes.headerLink} href="https://www.patternfly.org/v4/guidelines/">
+            PatternFly 4
             <img
               src="https://raw.githubusercontent.com/kubevirt-ui/kubevirt-components/main/images/GitHub-Mark-32px.png"
               alt="github logo"
+              className={classes.octocat}
             />
-            PatternFly 4
           </a>
           <a
             className={classes.headerLink}
             href="https://github.com/kubevirt-ui/kubevirt-components"
           >
+            KubeVirt UI
             <img
               src="https://raw.githubusercontent.com/kubevirt-ui/kubevirt-components/main/images/GitHub-Mark-32px.png"
               alt="github logo"
+              className={classes.octocat}
             />
-            KubeVirt UI
           </a>
         </nav>
       </div>

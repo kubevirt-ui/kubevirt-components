@@ -14,7 +14,19 @@ React Component Library for Kubevirt UI ([API reference](https://kubevirt-ui.git
 yarn add -D @kubevirt-ui/components
 ```
 
-## Development
+## Contributing
+
+When contributing code, use the development server, and check for linting documentation and testing.
+
+Run linter
+```bash
+yarn lint # or yarn lint:fix to fix trivial linting errors
+```
+
+Run tests
+```bash
+yarn test 
+```
 
 Run develpment server (http://localhost:6060):
 ```bash
@@ -31,11 +43,6 @@ Build the static documentation:
 yarn styleguide:build 
 ```
 
-## Scope
-
-Kubevirt UI compoents is a curated list of stable and documented components used by Kubevirt UI aplications and libraries.
-Kuevirt UI is based on [PatternFly](https://www.patternfly.org/) and [Openshift console](https://github.com/openshift/console), it extend them to create specilized components needed for Kubevirt design.
-
 ## When should I contribute my components to this repository?
 
 When a componenet used by an application is stable it can be published in this components repository so public users could: 
@@ -50,3 +57,8 @@ When a componenet used by an application is stable it can be published in this c
 Before moving a component to this repo make sure the code is [documented](https://tsdoc.org/) with descriptions and
 examples in a [markdown](https://www.markdownguide.org/) doc as needed to help users who are not familiar with the application
 and context understand what is the purpose of the component and how to use it.
+
+## Scope
+
+Kubevirt UI compoents is a curated list of stable and documented components used by Kubevirt UI aplications and libraries.
+Kuevirt UI is based on [PatternFly](https://www.patternfly.org/) and [Openshift console](https://github.com/openshift/console), it extend them to create specilized components needed for Kubevirt design.
