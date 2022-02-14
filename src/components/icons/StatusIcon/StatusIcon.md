@@ -32,7 +32,7 @@ const printableVmStatus = {
   {Object.values(printableVmStatus).map(status => (
     <tr>
       <td>{status}</td>
-      <td><VMIconStatus vmPrintableStatus={status} /></td>
+      <td><StatusIcon vmPrintableStatus={status} /></td>
     </tr>
   ))}
 </table>
