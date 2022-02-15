@@ -1,6 +1,6 @@
 name: Unit Tests + Codecov
 on:
-  pull_request_target:
+  pull_request:
     types:
       - opened
       - synchronize
@@ -42,5 +42,3 @@ jobs:
 
       - name: Coverage Upload
         uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
