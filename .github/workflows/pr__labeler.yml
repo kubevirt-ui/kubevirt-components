@@ -67,6 +67,7 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
+          number: ${{ github.event.issue.number }}
           header: 'cred-no-approver'
           message: |
             Hi, thank you for reviewing this pull request,
@@ -85,6 +86,7 @@ jobs:
         with:
           GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
           header: 'cred-no-reviewer'
+          number: ${{ github.event.issue.number }}
           message: |
             Hi, thank you for reviewing this pull request,
             Only users listed in the OWNERS file can lgtm or hold this pull request.
@@ -97,7 +99,7 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           GITHUB_TOKEN: '${{ secrets.BOT_PAT }}'
-          number: ${{ steps.finder.outputs.pr }}
+          number: ${{ github.event.issue.number }}
           header: 'slef-lgtm'
           message: |
             Hi, are you the pull request owner?.
