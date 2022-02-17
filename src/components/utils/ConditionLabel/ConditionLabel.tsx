@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import { Label, Popover, PopoverPosition } from '@patternfly/react-core';
-
 export interface k8sStatusConditions {
   /**
    * Type indicate which type of condition is.
@@ -29,7 +28,6 @@ export interface k8sStatusConditions {
  */
 export const ConditionLabel: React.FC<k8sStatusConditions> = React.memo((condition) => {
   const preventLabelLink = React.useCallback((e) => e.preventDefault(), []);
-
   const getBodyContent = React.useCallback(
     () => <div>{condition?.message}</div>,
     [condition?.message],

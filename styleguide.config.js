@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = {
   propsParser: require('react-docgen-typescript').withDefaultConfig().parse,
@@ -26,9 +27,9 @@ module.exports = {
       sectionDepth: 1,
     },
     {
-      name: 'Status',
-      components: 'src/components/status/**/*.tsx',
-      content: 'src/components/status/README.md',
+      name: 'Utils',
+      components: 'src/components/utils/**/*.tsx',
+      content: 'src/components/utils/README.md',
       sectionDepth: 1,
     },
     {
