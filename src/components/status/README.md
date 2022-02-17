@@ -1,2 +1,0 @@
-KubeVirt UI status components used  to render a status indicators for KubeVirt UI elements for examples virtual machines status, data volumes, data import, data import cron, image collections status etc.. 
-When needing a status component always look first at [PatternFly 4 guidelines](https://www.patternfly.org/v4/) and only if the component you are looking is missing, use KubeVirt UI components.
