@@ -9,6 +9,7 @@ const config: Config.InitialOptions = {
     '\\.(css|less|svg)$': '<rootDir>/__mocks__/dummy.ts',
   },
   modulePathIgnorePatterns: ['<rootDir>/dist'],
+  testRegex: '.*\\.test\\.(ts|tsx|js|jsx)$',
 };
 
 export default config;

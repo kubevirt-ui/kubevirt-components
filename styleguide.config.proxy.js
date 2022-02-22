@@ -29,7 +29,6 @@ module.exports = {
     '**/__tests__/**',
     '**/tests/**',
     '**/*.test.{js,jsx,ts,tsx}',
-    '**/*.spec.{js,jsx,ts,tsx}',
     '**/*.d.ts',
     'src/components/index.ts',
   ],
