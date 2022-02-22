@@ -60,15 +60,18 @@ module.exports = {
   },
   assetsDir: path.join(__dirname, 'styleguide/assets'),
   configureServer(app) {
-		app.use('/api/kubernetes', createProxyMiddleware({
-      target: process.env.BRIDGE_CLUSTER_ENDPOINT,
-      secure: false,
-      changeOrigin: true,
-      ws: true,
-      headers: {Authorization:`Bearer ${process.env.BRIDGE_AUTH_BEARER_TOKEN}`},
-      pathRewrite: {
+    app.use(
+      '/api/kubernetes',
+      createProxyMiddleware({
+        target: process.env.BRIDGE_CLUSTER_ENDPOINT,
+        secure: false,
+        changeOrigin: true,
+        ws: true,
+        headers: { Authorization: `Bearer ${process.env.BRIDGE_AUTH_BEARER_TOKEN}` },
+        pathRewrite: {
           [`^/api/kubernetes`]: '',
-      },
-    }));
-	},
+        },
+      }),
+    );
+  },
 };

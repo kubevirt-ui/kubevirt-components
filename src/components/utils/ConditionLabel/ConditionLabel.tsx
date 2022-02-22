@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { Label, Popover, PopoverPosition } from '@patternfly/react-core';
+
 export interface k8sStatusConditions {
   /**
    * Type indicate which type of condition is.
@@ -26,12 +27,9 @@ export interface k8sStatusConditions {
  *
  * On mouse click it creates a popover to explain the state in a more disursive way.
  */
-export const ConditionLabel: React.FC<k8sStatusConditions> = React.memo((condition) => {
+export const ConditionLabel: React.FC<k8sStatusConditions> = ({ message, status, reason }) => {
   const preventLabelLink = React.useCallback((e) => e.preventDefault(), []);
-  const getBodyContent = React.useCallback(
-    () => <div>{condition?.message}</div>,
-    [condition?.message],
-  );
+  const getBodyContent = React.useCallback(() => <div>{message}</div>, [message]);
 
   return (
     <Popover
@@ -40,9 +38,9 @@ export const ConditionLabel: React.FC<k8sStatusConditions> = React.memo((conditi
       bodyContent={getBodyContent}
     >
       <Label color="grey" isTruncated href="#" onClick={preventLabelLink}>
-        {condition?.reason}={condition?.status}
+        {reason}={status}
       </Label>
     </Popover>
   );
-});
+};
 ConditionLabel.displayName = 'ConditionLabel';
