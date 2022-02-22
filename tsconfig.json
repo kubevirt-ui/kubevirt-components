@@ -16,8 +16,10 @@
     "allowSyntheticDefaultImports": true,
     "emitDeclarationOnly": true,
     "paths": {
-      "rsg-components/*": ["./node_modules/react-styleguidist/lib/client/rsg-components/*"]
+      "rsg-components/*": ["./node_modules/react-styleguidist/lib/client/rsg-components/*"],
+      "@dynamic-plugin-sdk-mocks": ["./bridge/dynamic-plugin-sdk-mocks"],
     }
   },
-  "exclude": ["/node_modules/", "bridge"]
+  "include": ["src", "__mocks__/custom.d.ts"],
+  "exclude": ["**/node_modules", "**/dist", "bridge"]
 }

@@ -10,7 +10,7 @@
   "author": "Yaacov Zamir <yzamir@redhat.com>",
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "rollup -c",
+    "build": "rollup -c rollup.config.js",
     "lint": "eslint src --color",
     "lint:fix": "yarn lint --fix",
     "check-types": "tsc",
@@ -74,6 +74,7 @@
     "rollup": "^2.63.0",
     "rollup-plugin-dts": "^4.1.0",
     "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-svg": "^2.0.0",
     "sass": "^1.49.4",
     "sass-loader": "^12.4.0",
     "style-loader": "^3.3.1",

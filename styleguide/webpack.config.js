@@ -5,7 +5,7 @@ const webpack = require('webpack');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const allKubevirtTypes = fs
-  .readdirSync(path.resolve(__dirname, '../node_modules/@kubevirt-ui/kubevirt-api/kubevirt/models'))
+  .readdirSync(path.resolve(__dirname, '../node_modules/@kubevirt-ui/kubevirt-api'))
   .map((filename) => filename.replace(/\.[^/.]+$/, ''));
 
 module.exports = () => {
@@ -54,6 +54,9 @@ module.exports = () => {
     },
     resolve: {
       extensions: ['.js', '.ts', '.tsx', '.jsx'],
+      alias: {
+        '@openshift-console/dynamic-plugin-sdk': '@dynamic-plugin-sdk-mocks',
+      },
       plugins: [
         new TsconfigPathsPlugin({
           configFile: path.resolve(__dirname, '../tsconfig.json'),
