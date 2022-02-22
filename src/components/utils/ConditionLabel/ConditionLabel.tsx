@@ -21,11 +21,21 @@ export interface k8sStatusConditions {
   message?: string;
 }
 
+export type ConditionLabelProps = {
+  message?: string;
+  status: string;
+  reason: string;
+};
+
 /**
  * ConditionLabel renders a k8sStatusConditions.
  * Usefull to give information of what the resouce is doing without taking up much space into the interface.
  *
  * On mouse click it creates a popover to explain the state in a more disursive way.
+ * @param {ConditionLabelProps} props is the parrent props object.
+ * @param {string} props.message popup message to print when clicking the condition.
+ * @param {string} props.status the status of the condition.
+ * @param {string} props.reason the condition id.
  */
 export const ConditionLabel: React.FC<k8sStatusConditions> = ({ message, status, reason }) => {
   const preventLabelLink = React.useCallback((e) => e.preventDefault(), []);

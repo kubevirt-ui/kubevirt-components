@@ -90,6 +90,14 @@ export type OSIconProps = {
  * The OSIconsEnum is exported with the OSIcon and it represent the possible icons available with this component.
  *
  * OSIcon use a standard HTML img tag to render the right os image for you.
+ *
+ * @param {OSIconProps} props is the parrent props object.
+ * @param {string} props.iconClass is the name of the OS class.
+ * @param {string} props.alt is the alt attribute holds a text description of the os icon image.
+ * @param {string} props.className is additional classes added to the image.
+ * @param {string} props.width is the intrinsic width of the image. Could be a string or a number of pixels.
+ * @param {string} props.height is the intrinsic height of the image. Could be a string or a number of pixels.
+ * @param {string} props.'data-test-id' is a testing id.
  * */
 export const OSIcon = ({
   iconClass,
