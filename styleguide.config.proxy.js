@@ -1,6 +1,26 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
+const { readdirSync } = require('fs');
 const { createProxyMiddleware } = require('http-proxy-middleware');
+
+/**
+ * Collect sections from src directory
+ *
+ * @returns {Object[]} list of sections
+ */
+function getSections() {
+  const componentDir = 'src/components';
+  const sections = readdirSync(componentDir, { withFileTypes: true })
+    .filter((dirent) => dirent.isDirectory())
+    .map((dirent) => ({
+      name: dirent.name,
+      components: `${path.join(componentDir, dirent.name)}/**/*.tsx`,
+      content: `${path.join(componentDir, dirent.name)}/README.md`,
+      sectionDepth: 1,
+    }));
+
+  return sections;
+}
 
 module.exports = {
   propsParser: require('react-docgen-typescript').withDefaultConfig().parse,
@@ -20,24 +40,7 @@ module.exports = {
       content: 'README.md',
       sectionDepth: 1,
     },
-    {
-      name: 'Icons',
-      components: 'src/components/icons/**/*.tsx',
-      content: 'src/components/icons/README.md',
-      sectionDepth: 1,
-    },
-    {
-      name: 'Utils',
-      components: 'src/components/utils/**/*.tsx',
-      content: 'src/components/utils/README.md',
-      sectionDepth: 1,
-    },
-    {
-      name: 'Shims',
-      components: 'src/components/shims/**/*.tsx',
-      content: 'src/components/shims/README.md',
-      sectionDepth: 1,
-    },
+    ...getSections(),
   ],
   require: [
     path.resolve(__dirname, 'node_modules/@patternfly/patternfly/patternfly.css'),

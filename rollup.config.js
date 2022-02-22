@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import dts from 'rollup-plugin-dts';
 import postcss from 'rollup-plugin-postcss';
+import svg from 'rollup-plugin-svg-import';
 
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
@@ -23,7 +24,7 @@ export default [
         sourcemap: true,
       },
     ],
-    plugins: [resolve(), commonjs(), postcss(), typescript({ tsconfig: './tsconfig.json' })],
+    plugins: [svg(), resolve(), commonjs(), postcss(), typescript({ tsconfig: './tsconfig.json' })],
     external: ['react', 'react-dom'],
   },
   {

@@ -1,1 +1,3 @@
-export * from './utils';
+export * from './Icons';
+export * from './Utils';
+// export * from './Shims';
