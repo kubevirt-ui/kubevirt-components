@@ -18,7 +18,7 @@ const styles = ({ fontFamily }: Theme) => ({
 function LogoRenderer({ classes, children }: PropsWithChildren<JssInjectedProps>) {
   return (
     <h1 className={classes.logo}>
-      <img src="/logo.png" alt="Kubevirt UI" className={classes.image} />
+      <img src="./logo.png" alt="Kubevirt UI" className={classes.image} />
       {children}
     </h1>
   );
