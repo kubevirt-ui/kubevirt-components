@@ -1,7 +1,49 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const path = require('path');
-const { readdirSync } = require('fs');
+const { readdirSync, existsSync, mkdirSync, writeFileSync } = require('fs');
 const { createProxyMiddleware } = require('http-proxy-middleware');
+const path = require('path');
+
+/**
+ * Collect sections from src directory
+ *
+ * @param {http.IncomingMessage} _proxyRes the http response message
+ * @param {Express.Request} req request object
+ * @param {Express.Response} res response object
+ */
+function onProxyRes(_proxyRes, req, res) {
+  const oldWrite = res.write;
+  const oldEnd = res.end;
+  const chunks = [];
+
+  res.write = function (chunk, ...args) {
+    chunks.push(chunk);
+    return oldWrite.apply(res, [chunk, ...args]);
+  };
+
+  res.end = function (chunk, ...args) {
+    if (chunk) {
+      chunks.push(chunk);
+    }
+    const body = Buffer.concat(chunks).toString('utf8');
+
+    // Apply response end.
+    oldEnd.apply(res, [chunk, ...args]);
+
+    // Check if path exist
+    // If path exist and not overwrite, continue
+    const reqPath = `public/api/kubernetes${req.path}`;
+    if (existsSync(reqPath) && !(process.env.BRIDGE_PROXY_REWRITE === 'true')) {
+      return;
+    }
+
+    // Create traget directory if missing.
+    const reqDir = reqPath.substring(0, reqPath.lastIndexOf('/'));
+    mkdirSync(reqDir, { recursive: true });
+
+    // Record proxy body to file.
+    writeFileSync(reqPath, body);
+  };
+}
 
 /**
  * Collect sections from src directory
@@ -68,11 +110,12 @@ module.exports = {
         target: process.env.BRIDGE_CLUSTER_ENDPOINT,
         secure: false,
         changeOrigin: true,
-        ws: true,
+        ws: false,
         headers: { Authorization: `Bearer ${process.env.BRIDGE_AUTH_BEARER_TOKEN}` },
         pathRewrite: {
           [`^/api/kubernetes`]: '',
         },
+        onProxyRes,
       }),
     );
   },
