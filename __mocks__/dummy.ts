@@ -7,7 +7,3 @@ export class Dummy extends Error {
     super('Dummy file for exports');
   }
 }
-
-export function useResolvedExtensions(): any[] {
-  return [undefined, undefined, undefined];
-}
