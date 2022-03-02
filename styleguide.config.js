@@ -25,8 +25,8 @@ module.exports = {
   propsParser: require('react-docgen-typescript').withDefaultConfig().parse,
   styleguideDir: 'docs-build',
   ignore: [
-    '**/__tests__/**',
-    '**/tests/**',
+    '**/__snapshots__/**',
+    '**/__mocks__/**',
     '**/*.test.{js,jsx,ts,tsx}',
     '**/*.d.ts',
     'src/components/index.ts',
@@ -59,5 +59,5 @@ module.exports = {
   template: {
     favicon: './favicon-32x32.png',
   },
-  assetsDir: path.join(__dirname, 'styleguide/assets'),
+  assetsDir: path.join(__dirname, 'public'),
 };

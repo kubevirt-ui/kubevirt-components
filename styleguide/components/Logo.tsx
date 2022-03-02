@@ -2,8 +2,6 @@ import React, { PropsWithChildren } from 'react';
 import { Theme } from 'react-styleguidist/lib/typings/RsgTheme';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-import logo from '../assets/logo.png';
-
 const styles = ({ fontFamily }: Theme) => ({
   logo: {
     display: 'flex',
@@ -20,7 +18,7 @@ const styles = ({ fontFamily }: Theme) => ({
 function LogoRenderer({ classes, children }: PropsWithChildren<JssInjectedProps>) {
   return (
     <h1 className={classes.logo}>
-      <img src={logo} alt="Kubevirt UI" className={classes.image} />
+      <img src="/logo.png" alt="Kubevirt UI" className={classes.image} />
       {children}
     </h1>
   );

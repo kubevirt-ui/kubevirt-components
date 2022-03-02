@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 
-import { conditionsMock } from './tests/mocks';
+import { conditionsMock } from './__mocks__/conditionsMock';
 import { ConditionLabel } from './ConditionLabel';
 
 afterEach(cleanup);
