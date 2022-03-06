@@ -8,12 +8,11 @@ const getResourceURL = (props: WatchK8sResource): string => {
     return;
   }
 
-  const baseURL ='/api/kubernetes/apis/' + group + '/' + version;
   const namespaceURL =
     namespaced ? '/namespaces/' + (namespace.toString() || 'default') : '';
   const resourceKind = kind.toLowerCase() + 's';
   const resourceName = name ? name.toString() : '';
-  const url = baseURL + namespaceURL + '/' + resourceKind + (resourceName ? '/' + resourceName : '');
+  const url = 'apis/' + group + '/' + version + namespaceURL + '/' + resourceKind + (resourceName ? '/' + resourceName : '');
 
   return url;
 };
@@ -26,7 +25,10 @@ export const useK8sWatchResource = <R extends K8sResourceCommon | K8sResourceCom
   const [data, setData] = React.useState<R>();
 
   React.useEffect(() => {
-    const url = getResourceURL(props);
+    const baseURL = window.location.hostname.includes('kubevirt-ui.github.io') ?
+      '/kubevirt-components/api/kubernetes/' :
+      '/api/kubernetes/';
+    const url = baseURL + getResourceURL(props);
 
     fetch(url)
       .then(response => response.json())
