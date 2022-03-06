@@ -4,144 +4,14 @@ export const vmMock: V1VirtualMachine = {
   apiVersion: 'kubevirt.io/v1',
   kind: 'VirtualMachine',
   metadata: {
-    annotations: {
-      description: 'VM example',
-      'kubemacpool.io/transaction-timestamp': '2022-03-02T11:44:54.104172968Z',
-      'kubevirt.io/latest-observed-api-version': 'v1',
-      'kubevirt.io/storage-observed-api-version': 'v1alpha3',
-      'name.os.template.kubevirt.io/fedora31': 'Fedora 31',
-    },
-    creationTimestamp: '2022-03-02T11:44:54Z',
-    generation: 1,
-    labels: {
-      app: 'vm-example',
-      'os.template.kubevirt.io/fedora31': 'true',
-      'workload.template.kubevirt.io/server': 'true',
-    },
-    managedFields: [
-      {
-        apiVersion: 'kubevirt.io/v1alpha3',
-        fieldsType: 'FieldsV1',
-        fieldsV1: {
-          'f:metadata': {
-            'f:annotations': {
-              'f:kubevirt.io/latest-observed-api-version': {},
-              'f:kubevirt.io/storage-observed-api-version': {},
-            },
-          },
-        },
-        manager: 'Go-http-client',
-        operation: 'Update',
-        time: '2022-03-02T11:44:54Z',
-      },
-      {
-        apiVersion: 'kubevirt.io/v1alpha3',
-        fieldsType: 'FieldsV1',
-        fieldsV1: {
-          'f:status': {
-            '.': {},
-            'f:conditions': {},
-            'f:printableStatus': {},
-            'f:volumeSnapshotStatuses': {},
-          },
-        },
-        manager: 'Go-http-client',
-        operation: 'Update',
-        time: '2022-03-02T11:44:54Z',
-      },
-      {
-        apiVersion: 'kubevirt.io/v1',
-        fieldsType: 'FieldsV1',
-        fieldsV1: {
-          'f:metadata': {
-            'f:annotations': {
-              '.': {},
-              'f:description': {},
-              'f:name.os.template.kubevirt.io/fedora31': {},
-            },
-            'f:labels': {
-              '.': {},
-              'f:app': {},
-              'f:os.template.kubevirt.io/fedora31': {},
-              'f:workload.template.kubevirt.io/server': {},
-            },
-          },
-          'f:spec': {
-            '.': {},
-            'f:running': {},
-            'f:template': {
-              '.': {},
-              'f:metadata': {
-                '.': {},
-                'f:labels': {
-                  '.': {},
-                  'f:kubevirt.io/domain': {},
-                  'f:os.template.kubevirt.io/fedora31': {},
-                  'f:vm.kubevirt.io/name': {},
-                  'f:workload.template.kubevirt.io/server': {},
-                },
-              },
-              'f:spec': {
-                '.': {},
-                'f:domain': {
-                  '.': {},
-                  'f:cpu': {
-                    '.': {},
-                    'f:cores': {},
-                    'f:sockets': {},
-                    'f:threads': {},
-                  },
-                  'f:devices': {
-                    '.': {},
-                    'f:disks': {},
-                    'f:interfaces': {},
-                    'f:networkInterfaceMultiqueue': {},
-                    'f:rng': {},
-                  },
-                  'f:resources': {
-                    '.': {},
-                    'f:requests': {
-                      '.': {},
-                      'f:memory': {},
-                    },
-                  },
-                },
-                'f:hostname': {},
-                'f:networks': {},
-                'f:terminationGracePeriodSeconds': {},
-                'f:volumes': {},
-              },
-            },
-          },
-        },
-        manager: 'Mozilla',
-        operation: 'Update',
-        time: '2022-03-02T11:44:54Z',
-      },
-    ],
     name: 'vm-example',
     namespace: 'default',
-    resourceVersion: '2533278',
-    uid: '5e1c9ed5-1a1f-418e-b2e7-139c6a923b6e',
   },
   spec: {
     running: false,
     template: {
-      metadata: {
-        labels: {
-          'kubevirt.io/domain': 'vm-example',
-          'os.template.kubevirt.io/fedora31': 'true',
-          'vm.kubevirt.io/name': 'vm-example',
-          'workload.template.kubevirt.io/server': 'true',
-        },
-      },
       spec: {
         domain: {
-          cpu: {
-            cores: 1,
-            sockets: 1,
-            threads: 1,
-          },
           devices: {
             disks: [
               {
@@ -151,25 +21,7 @@ export const vmMock: V1VirtualMachine = {
                 },
                 name: 'containerdisk',
               },
-              {
-                disk: {
-                  bus: 'virtio',
-                },
-                name: 'cloudinitdisk',
-              },
             ],
-            interfaces: [
-              {
-                macAddress: '02:94:7e:00:00:00',
-                masquerade: {},
-                name: 'default',
-              },
-            ],
-            networkInterfaceMultiqueue: true,
-            rng: {},
-          },
-          machine: {
-            type: 'q35',
           },
           resources: {
             requests: {
@@ -177,26 +29,12 @@ export const vmMock: V1VirtualMachine = {
             },
           },
         },
-        hostname: 'vm-example',
-        networks: [
-          {
-            name: 'default',
-            pod: {},
-          },
-        ],
-        terminationGracePeriodSeconds: 0,
         volumes: [
           {
             containerDisk: {
               image: 'quay.io/kubevirt/fedora-cloud-container-disk-demo:latest',
             },
             name: 'containerdisk',
-          },
-          {
-            cloudInitNoCloud: {
-              userData: '#cloud-config\npassword: fedora\nchpasswd: { expire: False }',
-            },
-            name: 'cloudinitdisk',
           },
         ],
       },
@@ -217,11 +55,6 @@ export const vmMock: V1VirtualMachine = {
         enabled: false,
         name: 'containerdisk',
         reason: 'Snapshot is not supported for this volumeSource type [containerdisk]',
-      },
-      {
-        enabled: false,
-        name: 'cloudinitdisk',
-        reason: 'Snapshot is not supported for this volumeSource type [cloudinitdisk]',
       },
     ],
   },

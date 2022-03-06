@@ -11,7 +11,7 @@ configure({
   testIdAttribute: 'data-test-id',
 });
 
-jest.doMock('@openshift-console/dynamic-plugin-sdk/lib/lib-core', () => ({
+jest.doMock('@openshift-console/dynamic-plugin-sdk', () => ({
   useK8sWatchResource: jest.fn((props: WatchK8sResource | null) => {
     const response = useK8sWatchResourceFS(props);
 
