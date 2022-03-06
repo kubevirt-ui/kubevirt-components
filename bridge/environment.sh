@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+echo "Trying to connect to k8s cluster"
+
 BRIDGE_CLUSTER_ENDPOINT=$(oc whoami --show-server)
 export BRIDGE_CLUSTER_ENDPOINT
 
@@ -24,3 +26,5 @@ echo "BRIDGE_CLUSTER_ALERTMANAGER: $BRIDGE_CLUSTER_ALERTMANAGER"
 echo "BRIDGE_STYLEGUIDE_ENDPOINT   $BRIDGE_STYLEGUIDE_ENDPOINT"
 echo "BRIDGE_PROXY_REWRITE         $BRIDGE_PROXY_REWRITE"
 echo "BRIDGE_AUTH_BEARER_TOKEN:    hidden"
+
+echo "Setup complete"

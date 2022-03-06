@@ -1,19 +1,11 @@
 import * as React from 'react';
 
-import { VirtualMachineModelGroupVersionKind } from '@kubevirt-ui/kubevirt-api/console/models/VirtualMachineModel';
 import { V1VirtualMachine } from '@kubevirt-ui/kubevirt-api/kubevirt';
-import { useK8sWatchResource, WatchK8sResult } from '@openshift-console/dynamic-plugin-sdk';
+import { useK8sWatchResource } from '@openshift-console/dynamic-plugin-sdk';
 
 import { ConditionLabelList } from '../ConditionLabelList';
 
-export const externalLogicData = (props: WatchK8sResult<V1VirtualMachine>) => {
-  const [vm, loaded, loadError] = props;
-  if (!loaded || !!loadError) {
-    return null;
-  }
-
-  return vm?.status?.conditions;
-};
+import { externalLogic } from './extrenalLogic';
 
 export interface DemoComponentProps {
   /**
@@ -31,18 +23,15 @@ export interface DemoComponentProps {
  *
  * This component can me usefull to demo the components repo coding style.
  * @param {DemoComponentProps} props name and namespace.
- * @param {string} props.name vm name
- * @param {string} props.namespace vm namespace
  * */
-export const DemoComponent: React.FC<DemoComponentProps> = (props: DemoComponentProps) => {
-  const { name, namespace } = props;
+export const DemoComponent: React.FC<DemoComponentProps> = ({ name, namespace }) => {
   const [vm, loaded, loadError] = useK8sWatchResource<V1VirtualMachine>({
-    groupVersionKind: VirtualMachineModelGroupVersionKind,
+    groupVersionKind: { group: 'kubevirt.io', version: 'v1', kind: 'VirtualMachine' },
     name,
     namespace,
     namespaced: true,
   });
-  const conditions = externalLogicData([vm, loaded, loadError]);
+  const conditions = externalLogic(vm, loaded, loadError);
 
   return conditions ? <ConditionLabelList conditions={conditions} /> : null;
 };

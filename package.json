@@ -18,7 +18,7 @@
     "test-cov": "jest --coverage",
     "styleguide": "styleguidist server",
     "styleguide:build": "styleguidist build",
-    "styleguide:proxy": "source bridge/environment.sh; styleguidist server --config styleguide.config.proxy.js"
+    "styleguide:record": "source bridge/environment.sh; styleguidist server --config styleguide.config.proxy.js"
   },
   "dependencies": {
     "@kubevirt-ui/kubevirt-api": "^0.0.35",
@@ -52,7 +52,6 @@
     "@types/webpack-env": "^1.16.3",
     "@typescript-eslint/eslint-plugin": "^5.9.1",
     "@typescript-eslint/parser": "^5.9.1",
-    "Express": "^3.0.1",
     "babel-jest": "^27.4.6",
     "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
@@ -65,6 +64,7 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
+    "express": "^4.17.3",
     "file-loader": "^6.2.0",
     "http": "^0.0.1-security",
     "http-proxy-middleware": "^2.0.3",
