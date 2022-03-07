@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import { VirtualMachineModelGroupVersionKind } from '@kubevirt-ui/kubevirt-api/console/models';
 import { V1VirtualMachine } from '@kubevirt-ui/kubevirt-api/kubevirt';
 import { useK8sWatchResource } from '@openshift-console/dynamic-plugin-sdk';
 import { Text, TextVariants } from '@patternfly/react-core';
@@ -49,7 +48,11 @@ export const DemoComponent: React.FC<DemoComponentProps> = ({
   dataTestID,
 }: DemoComponentProps) => {
   const [vm, loaded, loadError] = useK8sWatchResource<V1VirtualMachine>({
-    groupVersionKind: VirtualMachineModelGroupVersionKind,
+    groupVersionKind: {
+      version: 'v1',
+      kind: 'VirtualMachine',
+      group: 'kubevirt.io',
+    },
     name,
     namespace,
     namespaced: true,
