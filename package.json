@@ -1,6 +1,6 @@
 {
   "name": "@kubevirt-ui/components",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "React Component Library for Kubevirt UI",
   "license": "Apache-2.0",
   "repository": {
