@@ -25,12 +25,26 @@ export default [
       },
     ],
     plugins: [svg(), resolve(), commonjs(), postcss(), typescript({ tsconfig: './tsconfig.json' })],
-    external: ['react', 'react-dom'],
+    external: [
+      'react',
+      'react-dom',
+      '@kubevirt-ui/kubevirt-api',
+      '@openshift-console/dynamic-plugin-sdk',
+      '@patternfly/react-core',
+      /\.(css|less|scss)$/,
+    ],
   },
   {
     input: 'src/index.ts',
     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
     plugins: [dts()],
-    external: ['react', 'react-dom', /\.(css|less|scss)$/],
+    external: [
+      'react',
+      'react-dom',
+      '@kubevirt-ui/kubevirt-api',
+      '@openshift-console/dynamic-plugin-sdk',
+      '@patternfly/react-core',
+      /\.(css|less|scss)$/,
+    ],
   },
 ];
