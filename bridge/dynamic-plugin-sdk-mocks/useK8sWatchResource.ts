@@ -1,21 +1,6 @@
 import * as React from 'react';
 import { K8sResourceCommon, WatchK8sResource } from '@openshift-console/dynamic-plugin-sdk';
-
-const getResourceURL = (props: WatchK8sResource): string => {
-  const {name, namespace, namespaced, groupVersionKind} = props;
-  const {group, version, kind} = groupVersionKind;
-  if (!group || !kind || !version) {
-    return;
-  }
-
-  const namespaceURL =
-    namespaced ? '/namespaces/' + (namespace.toString() || 'default') : '';
-  const resourceKind = kind.toLowerCase() + 's';
-  const resourceName = name ? name.toString() : '';
-  const url = 'apis/' + group + '/' + version + namespaceURL + '/' + resourceKind + (resourceName ? '/' + resourceName : '');
-
-  return url;
-};
+import getWatchK8sResourceURL from './getWatchK8sResourceURL';
 
 export const useK8sWatchResource = <R extends K8sResourceCommon | K8sResourceCommon[]>(
     props: WatchK8sResource | null,
@@ -23,12 +8,12 @@ export const useK8sWatchResource = <R extends K8sResourceCommon | K8sResourceCom
   const [loaded, setLoaded] = React.useState(false);
   const [loadError, setLoadError] = React.useState<string>(null);
   const [data, setData] = React.useState<R>();
+  const baseURL = window.location.hostname.includes('kubevirt-ui.github.io') ?
+    '/kubevirt-components/api/kubernetes/' :
+    '/api/kubernetes/';
 
   React.useEffect(() => {
-    const baseURL = window.location.hostname.includes('kubevirt-ui.github.io') ?
-      '/kubevirt-components/api/kubernetes/' :
-      '/api/kubernetes/';
-    const url = baseURL + getResourceURL(props);
+    const url = baseURL + getWatchK8sResourceURL(props);
 
     fetch(url)
       .then(response => response.json())
@@ -38,10 +23,11 @@ export const useK8sWatchResource = <R extends K8sResourceCommon | K8sResourceCom
         } else {
           setData(jsonData as R);
         }
-        setLoaded(true);
       })
       .catch((error) => {
-        setLoadError(error);
+        setLoadError(error);        
+      })
+      .finally(() => {
         setLoaded(true);
       });
 

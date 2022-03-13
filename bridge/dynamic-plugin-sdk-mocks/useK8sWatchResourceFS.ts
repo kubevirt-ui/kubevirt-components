@@ -1,29 +1,16 @@
 import { K8sResourceCommon, WatchK8sResource } from '@openshift-console/dynamic-plugin-sdk';
 import fs from 'fs';
+import getWatchK8sResourceURL from './getWatchK8sResourceURL';
 
-const getResourceURL = (props: WatchK8sResource): string => {
-  const {name, namespace, namespaced, groupVersionKind} = props;
-  const {group, version, kind} = groupVersionKind;
-  if (!group || !kind || !version) {
-    return;
-  }
-
-  const baseURL ='/api/kubernetes/apis/' + group + '/' + version;
-  const namespaceURL =
-    namespaced ? '/namespaces/' + (namespace.toString() || 'default') : '';
-  const resourceKind = kind.toLowerCase() + 's';
-  const resourceName = name ? name.toString() : '';
-  const url = baseURL + namespaceURL + '/' + resourceKind + (resourceName ? '/' + resourceName : '');
-
-  return url;
-};
 
 export const useK8sWatchResourceFS = <R extends K8sResourceCommon | K8sResourceCommon[]>(
     props: WatchK8sResource | null,
   ) => {
+    const baseURL = 'public/api/kubernetes/';
+
     let data = {};
 
-    const reqPath = 'public' + getResourceURL(props);
+    const reqPath = baseURL + getWatchK8sResourceURL(props);
     if (!fs.existsSync(reqPath)) {
       return [{}, true, 'Resource not found (404)'];
     }

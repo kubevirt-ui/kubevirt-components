@@ -15,7 +15,7 @@
     "lint:fix": "yarn lint --fix",
     "check-types": "tsc",
     "test": "jest",
-    "test-cov": "jest --coverage",
+    "test-cov": "jest --coverage --collectCoverageFrom=src/**/*.{ts,tsx}",
     "styleguide": "styleguidist server",
     "styleguide:build": "styleguidist build",
     "styleguide:record": "source bridge/environment.sh; styleguidist server --config styleguide.config.proxy.js"
