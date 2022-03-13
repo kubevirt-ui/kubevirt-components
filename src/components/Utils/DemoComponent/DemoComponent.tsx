@@ -39,7 +39,11 @@ export const DemoComponentDefaults: Partial<DemoComponentProps> = {
  * DemoComponent renders a demo component.
  *
  * This component can me usefull to demo the components repo coding style.
- * @param {DemoComponentProps} props name and namespace.
+ * @param {DemoComponentProps} props is the components props object.
+ * @param {string} props.name name of the virtual machine.
+ * @param {string} props.namespace namespace of the virtual machine.
+ * @param {string} props.errorText test to print on error getting virtual machine data.
+ * @param {string} props.dataTestID an ID for testing.
  * */
 export const DemoComponent: React.FC<DemoComponentProps> = ({
   name,
