@@ -4,11 +4,11 @@ import { V1VirtualMachine } from '@kubevirt-ui/kubevirt-api/kubevirt';
 import { useK8sWatchResource } from '@openshift-console/dynamic-plugin-sdk';
 import { Text, TextVariants } from '@patternfly/react-core';
 
-import { ConditionLabelList } from '../ConditionLabelList';
+import { ConditionLabelList } from '../../Utils/ConditionLabelList';
 
 import { externalLogic } from './extrenalLogic';
 
-export interface DemoComponentProps {
+export interface DemoUseResourceProps {
   /**
    * VirtualMachine name.
    */
@@ -28,29 +28,21 @@ export interface DemoComponentProps {
 }
 
 /**
- * Default prop values for DemoComponent.
- */
-export const DemoComponentDefaults: Partial<DemoComponentProps> = {
-  errorText: 'Missing virtual machine data',
-  dataTestID: 'DemoComponent',
-};
-
-/**
  * DemoComponent renders a demo component.
  *
  * This component can me usefull to demo the components repo coding style.
- * @param {DemoComponentProps} props is the components props object.
+ * @param {DemoUseResourceProps} props is the components props object.
  * @param {string} props.name name of the virtual machine.
  * @param {string} props.namespace namespace of the virtual machine.
  * @param {string} props.errorText test to print on error getting virtual machine data.
  * @param {string} props.dataTestID an ID for testing.
  * */
-export const DemoComponent: React.FC<DemoComponentProps> = ({
+export const DemoUseResource: React.FC<DemoUseResourceProps> = ({
   name,
   namespace,
   errorText,
   dataTestID,
-}: DemoComponentProps) => {
+}: DemoUseResourceProps) => {
   const [vm, loaded, loadError] = useK8sWatchResource<V1VirtualMachine>({
     groupVersionKind: {
       version: 'v1',
@@ -71,6 +63,6 @@ export const DemoComponent: React.FC<DemoComponentProps> = ({
     </Text>
   );
 };
-DemoComponent.displayName = 'DemoComponent';
+DemoUseResource.displayName = 'DemoComponent';
 
-export default DemoComponent;
+export default DemoUseResource;
