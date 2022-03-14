@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render DemoUseResource (none valid vm) 1`] = `
+exports[`Render DemoUseResources (none valid vm) 1`] = `
 <DocumentFragment>
   <small
     class=""
@@ -15,7 +15,7 @@ exports[`Render DemoUseResource (none valid vm) 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Render DemoUseResource (valid vm) 1`] = `
+exports[`Render DemoUseResources (valid vm) 1`] = `
 <DocumentFragment>
   <div
     class="pf-c-label-group"

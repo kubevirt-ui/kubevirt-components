@@ -1,14 +1,14 @@
 import * as React from 'react';
 
 import { V1VirtualMachine } from '@kubevirt-ui/kubevirt-api/kubevirt';
-import { useK8sWatchResource } from '@openshift-console/dynamic-plugin-sdk';
+import { useK8sWatchResources } from '@openshift-console/dynamic-plugin-sdk';
 import { Text, TextVariants } from '@patternfly/react-core';
 
 import { ConditionLabelList } from '../../Utils/ConditionLabelList';
 
 import { internalLogic } from './intrenalLogic';
 
-export interface DemoUseResourceProps {
+export interface DemoUseResourcesProps {
   /**
    * VirtualMachine name.
    */
@@ -31,28 +31,31 @@ export interface DemoUseResourceProps {
  * DemoUseResource renders a demo component.
  *
  * This component can me usefull to demo the components repo coding style.
- * @param {DemoUseResourceProps} props is the components props object.
+ * @param {DemoUseResourcesProps} props is the components props object.
  * @param {string} props.name name of the virtual machine.
  * @param {string} props.namespace namespace of the virtual machine.
  * @param {string} props.errorText test to print on error getting virtual machine data.
  * @param {string} props.dataTestID an ID for testing.
  * */
-export const DemoUseResource: React.FC<DemoUseResourceProps> = ({
+export const DemoUseResources: React.FC<DemoUseResourcesProps> = ({
   name,
   namespace,
   errorText,
   dataTestID,
-}: DemoUseResourceProps) => {
-  const [vm, loaded, loadError] = useK8sWatchResource<V1VirtualMachine>({
-    groupVersionKind: {
-      version: 'v1',
-      kind: 'VirtualMachine',
-      group: 'kubevirt.io',
+}: DemoUseResourcesProps) => {
+  const resources = useK8sWatchResources<{ vm: V1VirtualMachine }>({
+    vm: {
+      groupVersionKind: {
+        version: 'v1',
+        kind: 'VirtualMachine',
+        group: 'kubevirt.io',
+      },
+      name,
+      namespace,
+      namespaced: true,
     },
-    name,
-    namespace,
-    namespaced: true,
   });
+  const { data: vm, loaded, loadError } = resources?.vm || {};
   const conditions = internalLogic(vm, loaded, loadError);
 
   return conditions ? (
@@ -63,6 +66,6 @@ export const DemoUseResource: React.FC<DemoUseResourceProps> = ({
     </Text>
   );
 };
-DemoUseResource.displayName = 'DemoUseResource';
+DemoUseResources.displayName = 'DemoUseResources';
 
-export default DemoUseResource;
+export default DemoUseResources;
