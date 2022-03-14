@@ -2,18 +2,22 @@ import * as React from 'react';
 
 import { cleanup, render } from '@testing-library/react';
 
-import { demoMock } from './__mocks__/demoMock';
-import { DemoComponent, DemoComponentDefaults } from './DemoComponent';
+import { DemoUseResource } from './DemoUseResource';
 
 afterEach(cleanup);
 
+const name = 'vm-example';
+const namespace = 'default';
+const errorText = 'Missing virtual machine data';
+const dataTestID = 'DemoUseResourceTest';
+
 test('Render DemoComponent (valid vm)', () => {
   const { asFragment } = render(
-    <DemoComponent
-      name={demoMock.name}
-      namespace={demoMock.namespace}
-      errorText={DemoComponentDefaults.errorText}
-      dataTestID={DemoComponentDefaults.dataTestID}
+    <DemoUseResource
+      name={name}
+      namespace={namespace}
+      errorText={errorText}
+      dataTestID={dataTestID}
     />,
   );
   expect(asFragment()).toMatchSnapshot();
@@ -21,11 +25,11 @@ test('Render DemoComponent (valid vm)', () => {
 
 test('Render DemoComponent (none valid vm)', () => {
   const { asFragment } = render(
-    <DemoComponent
+    <DemoUseResource
       name="none"
       namespace="does-not-exist"
-      errorText={DemoComponentDefaults.errorText}
-      dataTestID={DemoComponentDefaults.dataTestID}
+      errorText={errorText}
+      dataTestID={dataTestID}
     />,
   );
   expect(asFragment()).toMatchSnapshot();

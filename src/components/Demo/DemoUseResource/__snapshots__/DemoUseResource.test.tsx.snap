@@ -8,7 +8,7 @@ exports[`Render DemoComponent (none valid vm) 1`] = `
     data-ouia-component-type="PF4/Text"
     data-ouia-safe="true"
     data-pf-content="true"
-    data-test-id="DemoComponent"
+    data-test-id="DemoUseResourceTest"
   >
     Missing virtual machine data
   </small>
