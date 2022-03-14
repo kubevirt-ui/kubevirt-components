@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { cleanup, render } from '@testing-library/react';
 
-import { DemoUseResource } from './DemoUseResource';
+import { DemoUseResources } from './DemoUseResources';
 
 afterEach(cleanup);
 
@@ -11,9 +11,9 @@ const namespace = 'default';
 const errorText = 'Missing virtual machine data';
 const dataTestID = 'DemoUseResourceTest';
 
-test('Render DemoUseResource (valid vm)', () => {
+test('Render DemoUseResources (valid vm)', () => {
   const { asFragment } = render(
-    <DemoUseResource
+    <DemoUseResources
       name={name}
       namespace={namespace}
       errorText={errorText}
@@ -23,9 +23,9 @@ test('Render DemoUseResource (valid vm)', () => {
   expect(asFragment()).toMatchSnapshot();
 });
 
-test('Render DemoUseResource (none valid vm)', () => {
+test('Render DemoUseResources (none valid vm)', () => {
   const { asFragment } = render(
-    <DemoUseResource
+    <DemoUseResources
       name="none"
       namespace="does-not-exist"
       errorText={errorText}
