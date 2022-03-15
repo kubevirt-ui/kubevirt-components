@@ -1,4 +1,4 @@
-export const vmErrorMock = {
+export const fetchErrorMock = {
   kind: 'Status',
   apiVersion: 'v1',
   metadata: {},

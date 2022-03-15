@@ -1,6 +1,6 @@
 import { V1VirtualMachine } from '@kubevirt-ui/kubevirt-api/kubevirt';
 
-export const vmMock: V1VirtualMachine = {
+export const fetchNoConditionsMock: V1VirtualMachine = {
   apiVersion: 'kubevirt.io/v1',
   kind: 'VirtualMachine',
   metadata: {
@@ -41,14 +41,6 @@ export const vmMock: V1VirtualMachine = {
     },
   },
   status: {
-    conditions: [
-      {
-        message: 'VMI does not exist',
-        reason: 'VMINotExists',
-        status: 'False',
-        type: 'Ready',
-      },
-    ],
     printableStatus: 'Stopped',
     volumeSnapshotStatuses: [
       {
