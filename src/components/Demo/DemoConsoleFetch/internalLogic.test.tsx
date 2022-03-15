@@ -1,20 +1,20 @@
 import { cleanup } from '@testing-library/react';
 
-import { resourcesErrorMock } from './__mocks__/resourcesErrorMock';
-import { resourcesMock } from './__mocks__/resourcesMock';
-import { resourcesNoConditionsMock } from './__mocks__/resourcesNoConditionsMock';
+import { fetchErrorMock } from './__mocks__/fetchErrorMock';
+import { fetchMock } from './__mocks__/fetchMock';
+import { fetchNoConditionsMock } from './__mocks__/fetchNoConditionsMock';
 import { internalLogic } from './intrenalLogic';
 
 afterEach(cleanup);
 
 test('internalLogic', () => {
-  const conditions = internalLogic(resourcesMock, true, null);
+  const conditions = internalLogic(fetchMock, true, null);
 
   expect(conditions && conditions.length).toBe(1);
 });
 
 test('internalLogic (error loading vm)', () => {
-  const conditions = internalLogic(resourcesErrorMock, true, null);
+  const conditions = internalLogic(fetchErrorMock, true, null);
 
   expect(conditions && conditions.length).toBe(null);
 });
@@ -25,7 +25,7 @@ test('internalLogic (not loaded yet)', () => {
 });
 
 test('internalLogic (no conditions in vm)', () => {
-  const conditions = internalLogic(resourcesNoConditionsMock, true, null);
+  const conditions = internalLogic(fetchNoConditionsMock, true, null);
 
   expect(conditions && conditions.length).toBe(0);
 });

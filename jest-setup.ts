@@ -5,7 +5,8 @@ import '@testing-library/jest-dom/extend-expect';
 import 'regenerator-runtime/runtime';
 import '@testing-library/jest-dom';
 
-import { useK8sWatchResourceFS } from './bridge/dynamic-plugin-sdk-mocks/useK8sWatchResourceFS';
+import consoleFetchFS from './bridge/dynamic-plugin-sdk-mocks/consoleFetchFS';
+import useK8sWatchResourceFS from './bridge/dynamic-plugin-sdk-mocks/useK8sWatchResourceFS';
 import useK8sWatchResourcesFS from './bridge/dynamic-plugin-sdk-mocks/useK8sWatchResourcesFS';
 
 configure({
@@ -20,6 +21,11 @@ jest.doMock('@openshift-console/dynamic-plugin-sdk', () => ({
   }),
   useK8sWatchResources: jest.fn((props: any) => {
     const response = useK8sWatchResourcesFS(props);
+
+    return response;
+  }),
+  consoleFetch: jest.fn((props: any) => {
+    const response = consoleFetchFS(props);
 
     return response;
   }),

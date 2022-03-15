@@ -14,7 +14,7 @@ export const internalLogic = (
   loadError: string | null,
 ) => {
   // Check for loaded data
-  if (!loaded || loadError) {
+  if (!obj || !loaded || loadError) {
     return null;
   }
 
